@@ -5,9 +5,16 @@ var lightTheme = ThemeData();
 var darkTheme = ThemeData(
   brightness: Brightness.dark,
   useMaterial3: true,
+  appBarTheme: AppBarTheme(
+    backgroundColor: dContainerColor,
+  ),
   inputDecorationTheme: InputDecorationTheme(
     fillColor: dBackgroundColor,
     filled: true,
+    border: UnderlineInputBorder(
+      borderSide: BorderSide.none,
+      borderRadius: BorderRadius.circular(10),
+    ),
   ),
   colorScheme: const ColorScheme.dark(
     primary: dPrimarColor,

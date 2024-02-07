@@ -15,7 +15,7 @@ class AuthPage extends StatelessWidget {
             child: Column(
               children: [
                 WelcomeHeading(),
-                SizedBox(height: 40),
+                SizedBox(height: 60),
                 AuthPageBody(),
               ],
             ),

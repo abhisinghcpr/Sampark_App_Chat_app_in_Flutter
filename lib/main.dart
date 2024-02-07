@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sampark/Config/PagePath.dart';
 import 'package:sampark/Config/Themes.dart';
+import 'package:sampark/Pages/Home/HomePage.dart';
 import 'package:sampark/Pages/SplacePage/SplacePage.dart';
 import 'package:sampark/Pages/Welcome/WelcomePage.dart';
 
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
       getPages: pagePath,
       darkTheme: darkTheme,
       themeMode: ThemeMode.dark,
-      home: WelcomePage(),
+      home: HomePage(),
     );
   }
 }

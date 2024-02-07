@@ -11,7 +11,6 @@ class AuthPageBody extends StatelessWidget {
     RxBool isLogin = false.obs;
     return Container(
       padding: EdgeInsets.all(20),
-      // height: 400,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         color: Theme.of(context).colorScheme.primaryContainer,
@@ -57,17 +56,17 @@ class AuthPageBody extends StatelessWidget {
                         onTap: () {
                           isLogin.value = false;
                         },
-                        child: Container(
+                        child: SizedBox(
                           width: MediaQuery.sizeOf(context).width / 2.5,
                           child: Column(
                             children: [
                               Text(
                                 "Signup",
                                 style: isLogin.value
-                                    ? Theme.of(context).textTheme.bodyLarge
+                                    ? Theme.of(context).textTheme.labelLarge
                                     : Theme.of(context).textTheme.bodyLarge,
                               ),
-                              SizedBox(height: 5),
+                              const SizedBox(height: 5),
                               AnimatedContainer(
                                 duration: Duration(milliseconds: 200),
                                 width: isLogin.value ? 0 : 100,
