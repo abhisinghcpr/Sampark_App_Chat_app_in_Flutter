@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sampark/Controller/AuthController.dart';
 import 'package:sampark/Widget/PrimaryButton.dart';
 
 class LoginForm extends StatelessWidget {
@@ -7,11 +8,15 @@ class LoginForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController email = TextEditingController();
+    TextEditingController password = TextEditingController();
+    AuthController authController = Get.put(AuthController());
     return Column(
       children: [
         const SizedBox(height: 40),
-        const TextField(
-          decoration: InputDecoration(
+        TextField(
+          controller: email,
+          decoration: const InputDecoration(
             hintText: "Email",
             prefixIcon: Icon(
               Icons.alternate_email_rounded,
@@ -19,8 +24,9 @@ class LoginForm extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 30),
-        const TextField(
-          decoration: InputDecoration(
+        TextField(
+          controller: password,
+          decoration: const InputDecoration(
             hintText: "Passowrd",
             prefixIcon: Icon(
               Icons.password_outlined,
@@ -28,17 +34,24 @@ class LoginForm extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 60),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            PrimaryButton(
-              ontap: () {
-                Get.offAllNamed("/homePage");
-              },
-              btnName: "LOGIN",
-              icon: Icons.lock_open_outlined,
-            ),
-          ],
+        Obx(
+          () => authController.isLoading.value
+              ? CircularProgressIndicator()
+              : Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    PrimaryButton(
+                      ontap: () {
+                        authController.login(
+                          email.text,
+                          password.text,
+                        );
+                      },
+                      btnName: "LOGIN",
+                      icon: Icons.lock_open_outlined,
+                    ),
+                  ],
+                ),
         )
       ],
     );
