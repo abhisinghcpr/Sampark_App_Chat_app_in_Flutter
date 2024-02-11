@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:sampark/Pages/Auth/AuthPage.dart';
 import 'package:sampark/Pages/Chat/ChatPage.dart';
 import 'package:sampark/Pages/Home/HomePage.dart';
+import 'package:sampark/Pages/Profile/ProfilePage.dart';
 
 var pagePath = [
   GetPage(
@@ -17,6 +18,11 @@ var pagePath = [
   GetPage(
     name: "/chatPage",
     page: () => ChatPage(),
+    transition: Transition.rightToLeft,
+  ),
+  GetPage(
+    name: "/profilePage",
+    page: () => ProfilePage(),
     transition: Transition.rightToLeft,
   ),
 ];

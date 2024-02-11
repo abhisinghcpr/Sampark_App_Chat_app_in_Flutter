@@ -5,6 +5,7 @@ import 'package:sampark/Config/PagePath.dart';
 import 'package:sampark/Config/Themes.dart';
 import 'package:sampark/Pages/Auth/AuthPage.dart';
 import 'package:sampark/Pages/Home/HomePage.dart';
+import 'package:sampark/Pages/SplacePage/SplacePage.dart';
 import 'package:sampark/firebase_options.dart';
 
 void main() async {
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
       getPages: pagePath,
       darkTheme: darkTheme,
       themeMode: ThemeMode.dark,
-      home: AuthPage(),
+      home: const SplacePage(),
     );
   }
 }
