@@ -53,7 +53,11 @@ class SignupForm extends StatelessWidget {
                   children: [
                     PrimaryButton(
                       ontap: () {
-                        authController.createUser(email.text, password.text);
+                        authController.createUser(
+                          email.text,
+                          password.text,
+                          name.text,
+                        );
                       },
                       btnName: "SIGNUP",
                       icon: Icons.lock_open_outlined,

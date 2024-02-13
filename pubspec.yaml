@@ -40,7 +40,7 @@ dependencies:
   get: ^4.6.6 # For State Management And Page routing 
   firebase_core: ^2.25.4 # For Firebase
   firebase_auth: ^4.17.4 # For Firebase Authentication
-
+  cloud_firestore: ^4.15.4 # For Cloud Firestore
 dev_dependencies:
   flutter_test:
     sdk: flutter

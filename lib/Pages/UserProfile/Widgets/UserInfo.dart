@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 import '../../../Config/Images.dart';
+import '../../../Controller/ProfileController.dart';
 
 class LoginUserInfo extends StatelessWidget {
   const LoginUserInfo({super.key});
 
   @override
   Widget build(BuildContext context) {
+    ProfileController profileController = Get.put(ProfileController());
     return Container(
       padding: EdgeInsets.all(20),
       // height: 100,
@@ -32,19 +35,25 @@ class LoginUserInfo extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                      "Nitish Kumar",
-                      style: Theme.of(context).textTheme.bodyLarge,
-                    ),
+                    Obx(
+                      () => Text(
+                        profileController.currentUser.value.name! == null
+                            ? "User"
+                            : profileController.currentUser.value.name!,
+                        style: Theme.of(context).textTheme.bodyLarge,
+                      ),
+                    )
                   ],
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                      "nitishr@gmail.com",
-                      style: Theme.of(context).textTheme.labelLarge,
-                    ),
+                    Obx(
+                      () => Text(
+                        profileController.currentUser.value.email!,
+                        style: Theme.of(context).textTheme.labelLarge,
+                      ),
+                    )
                   ],
                 ),
                 SizedBox(height: 20),
