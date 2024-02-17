@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:sampark/Config/Images.dart';
 import 'package:sampark/Controller/ChatController.dart';
+import 'package:sampark/Controller/ProfileController.dart';
 import 'package:sampark/Model/UserMode.dart';
 import 'package:sampark/Pages/Chat/Widgets/ChatBubble.dart';
 
@@ -16,6 +18,8 @@ class ChatPage extends StatelessWidget {
   Widget build(BuildContext context) {
     ChatController chatController = Get.put(ChatController());
     TextEditingController messageController = TextEditingController();
+    ProfileController profileController = Get.put(ProfileController());
+    String roomId = chatController.getRoomId(userModel.id!);
     return Scaffold(
       appBar: AppBar(
         leading: Padding(
@@ -104,39 +108,44 @@ class ChatPage extends StatelessWidget {
         ),
       ),
       body: Padding(
-        padding: EdgeInsets.all(10),
-        child: ListView(
-          children: [
-            ChatBubble(
-              message: "Hello How are you ?",
-              imageUrl: "",
-              isComming: true,
-              status: "read",
-              time: "10:10 AM",
-            ),
-            ChatBubble(
-              message: "Hello How are you ?",
-              imageUrl: "",
-              isComming: false,
-              status: "read",
-              time: "10:10 AM",
-            ),
-            ChatBubble(
-              message: "Hello How are you ?",
-              imageUrl:
-                  "https://th.bing.com/th/id/OIP.IZKOAibfR1kb-FaLtsCUGQHaEE?rs=1&pid=ImgDetMain",
-              isComming: false,
-              status: "read",
-              time: "10:10 AM",
-            ),
-            ChatBubble(
-              message: "Hello How are you ?",
-              imageUrl: "",
-              isComming: true,
-              status: "read",
-              time: "10:10 AM",
-            ),
-          ],
+        padding: EdgeInsets.only(bottom: 70, left: 10, right: 10, top: 10),
+        child: StreamBuilder(
+          stream: chatController.getMessages(roomId),
+          builder: (context, snapShot) {
+            if (snapShot.connectionState == ConnectionState.waiting) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+            if (snapShot.hasError) {
+              return Center(
+                child: Text("Error: ${snapShot.error}"),
+              );
+            }
+            if (snapShot.data == null) {
+              return Center(
+                child: Text("No Messages"),
+              );
+            }
+
+            return ListView.builder(
+              reverse: true,
+              itemCount: snapShot.data!.length,
+              itemBuilder: (context, index) {
+                DateTime timestamp =
+                    DateTime.parse(snapShot.data![index].timestamp!);
+                String formattedTime = DateFormat('hh:mm a').format(timestamp);
+                return ChatBubble(
+                  message: snapShot.data![index].message!,
+                  imageUrl: snapShot.data![index].imageUrl ?? "",
+                  isComming: snapShot.data![index].senderId !=
+                      profileController.currentUser.value.id!,
+                  status: "read",
+                  time: formattedTime,
+                );
+              },
+            );
+          },
         ),
       ),
     );
