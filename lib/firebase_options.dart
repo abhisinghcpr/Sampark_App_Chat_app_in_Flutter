@@ -50,19 +50,19 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCHvS95PgCyihci4hXiEI_e3fmnmJtfxtg',
-    appId: '1:884714113001:android:b04917e4837979ce6f2d78',
-    messagingSenderId: '884714113001',
-    projectId: 'sampark-chat-app',
-    storageBucket: 'sampark-chat-app.appspot.com',
+    apiKey: 'AIzaSyCvVVYoIfXPVqctwELwmjaLEVi2EHIxjkg',
+    appId: '1:384817146088:android:c23a41cb455c583cb5815d',
+    messagingSenderId: '384817146088',
+    projectId: 'samparkapptest-b0a9c',
+    storageBucket: 'samparkapptest-b0a9c.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDsVsC_Adt17OA64exVp3e-Civg1QvMadY',
-    appId: '1:884714113001:ios:e8557a18a3837ed16f2d78',
-    messagingSenderId: '884714113001',
-    projectId: 'sampark-chat-app',
-    storageBucket: 'sampark-chat-app.appspot.com',
+    apiKey: 'AIzaSyByBlix8N9gqS8c6TKrW119Y5CLuCWRkXw',
+    appId: '1:384817146088:ios:2ee427805401a9dcb5815d',
+    messagingSenderId: '384817146088',
+    projectId: 'samparkapptest-b0a9c',
+    storageBucket: 'samparkapptest-b0a9c.appspot.com',
     iosBundleId: 'com.example.sampark',
   );
 }
