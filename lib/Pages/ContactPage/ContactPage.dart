@@ -1,6 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sampark/Controller/ChatController.dart';
+import 'package:sampark/Controller/ContactController.dart';
+import 'package:sampark/Pages/Chat/ChatPage.dart';
 import 'package:sampark/Pages/ContactPage/Widgets/ConactSearch.dart';
 import 'package:sampark/Pages/ContactPage/Widgets/NewContatcTile.dart';
 
@@ -13,6 +16,9 @@ class ContactPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     RxBool isSearchEnable = false.obs;
+    ContactController contactController = Get.put(ContactController());
+
+    ChatController chatController = Get.put(ChatController());
     return Scaffold(
       appBar: AppBar(
         title: Text("Select contact"),
@@ -54,56 +60,26 @@ class ContactPage extends StatelessWidget {
               ],
             ),
             SizedBox(height: 10),
-            Column(
-              children: [
-                InkWell(
-                  onTap: () {
-                    Get.toNamed("/chatPage");
-                  },
-                  child: ChatTile(
-                    imageUrl: AssetsImage.girlPic,
-                    name: "SSSA KUMARI",
-                    lastChat: "Bad me bat krte hai",
-                    lastTime: "09:23 PM",
-                  ),
-                ),
-                InkWell(
-                  onTap: () {
-                    Get.toNamed("/chatPage");
-                  },
-                  child: ChatTile(
-                    imageUrl: AssetsImage.girlPic,
-                    name: "SSSA KUMARI",
-                    lastChat: "Bad me bat krte hai",
-                    lastTime: "09:23 PM",
-                  ),
-                ),
-                ChatTile(
-                  imageUrl: AssetsImage.boyPic,
-                  name: "Nitish kumar",
-                  lastChat: "Abhi bat krte hai ",
-                  lastTime: "09:23 PM",
-                ),
-                ChatTile(
-                  imageUrl: AssetsImage.girlPic,
-                  name: "SSSA KUMARI",
-                  lastChat: "Bad me bat krte hai",
-                  lastTime: "09:23 PM",
-                ),
-                ChatTile(
-                  imageUrl: AssetsImage.boyPic,
-                  name: "Nitish kumar",
-                  lastChat: "Abhi bat krte hai ",
-                  lastTime: "09:23 PM",
-                ),
-                ChatTile(
-                  imageUrl: AssetsImage.girlPic,
-                  name: "SSSA KUMARI",
-                  lastChat: "Bad me bat krte hai",
-                  lastTime: "09:23 PM",
-                ),
-              ],
-            ),
+            Obx(
+              () => Column(
+                children: contactController.userList
+                    .map(
+                      (e) => InkWell(
+                        onTap: () {
+                          Get.to(ChatPage(userModel: e));
+                        },
+                        child: ChatTile(
+                          imageUrl:
+                              e.profileImage ?? AssetsImage.defaultProfileUrl,
+                          name: e.name ?? "User",
+                          lastChat: e.about ?? "Hey there",
+                          lastTime: "",
+                        ),
+                      ),
+                    )
+                    .toList(),
+              ),
+            )
           ],
         ),
       ),

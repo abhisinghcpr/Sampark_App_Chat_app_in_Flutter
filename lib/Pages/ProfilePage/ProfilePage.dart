@@ -105,10 +105,10 @@ class ProfilePage extends StatelessWidget {
                                       ),
                                       child: profileController.currentUser.value
                                                       .profileImage ==
-                                                  "" ||
+                                                  null ||
                                               profileController.currentUser
                                                       .value.profileImage ==
-                                                  null
+                                                  ""
                                           ? Icon(
                                               Icons.image,
                                             )
