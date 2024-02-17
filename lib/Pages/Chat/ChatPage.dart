@@ -2,19 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:sampark/Config/Images.dart';
-import 'package:sampark/Controller/ChatController.dart';
 import 'package:sampark/Model/UserMode.dart';
 import 'package:sampark/Pages/Chat/Widgets/ChatBubble.dart';
 
 import '../../Model/ChatModel.dart';
 
 class ChatPage extends StatelessWidget {
-  final UserModel userModel;
-  const ChatPage({super.key, required this.userModel});
+  const ChatPage({super.key,});
 
   @override
   Widget build(BuildContext context) {
-    ChatController chatController = Get.put(ChatController());
     TextEditingController messageController = TextEditingController();
     return Scaffold(
       appBar: AppBar(
@@ -25,7 +22,7 @@ class ChatPage extends StatelessWidget {
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(userModel.name ?? "User",
+            Text("User",
                 style: Theme.of(context).textTheme.bodyLarge),
             Text(
               "Online",
@@ -85,11 +82,7 @@ class ChatPage extends StatelessWidget {
             SizedBox(width: 10),
             InkWell(
               onTap: () {
-                if (messageController.text.isNotEmpty) {
-                  chatController.sendMessage(
-                      userModel.id!, messageController.text);
-                  messageController.clear();
-                }
+             
               },
               child: Container(
                 width: 30,

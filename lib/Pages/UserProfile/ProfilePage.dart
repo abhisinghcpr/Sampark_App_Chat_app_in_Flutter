@@ -3,7 +3,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:sampark/Config/Images.dart';
 import 'package:sampark/Controller/AuthController.dart';
-import 'package:sampark/Controller/ProfileController.dart';
 import 'package:sampark/Pages/UserProfile/Widgets/UserInfo.dart';
 
 class UserProfilePage extends StatelessWidget {
@@ -12,7 +11,6 @@ class UserProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AuthController authController = Get.put(AuthController());
-    ProfileController profileController = Get.put(ProfileController());
     return Scaffold(
       appBar: AppBar(
         title: Text("Profile"),

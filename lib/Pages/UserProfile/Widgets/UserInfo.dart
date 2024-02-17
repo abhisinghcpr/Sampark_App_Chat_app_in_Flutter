@@ -3,14 +3,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../../../Config/Images.dart';
-import '../../../Controller/ProfileController.dart';
 
 class LoginUserInfo extends StatelessWidget {
   const LoginUserInfo({super.key});
 
   @override
   Widget build(BuildContext context) {
-    ProfileController profileController = Get.put(ProfileController());
     return Container(
       padding: EdgeInsets.all(20),
       // height: 100,
@@ -37,9 +35,7 @@ class LoginUserInfo extends StatelessWidget {
                   children: [
                     Obx(
                       () => Text(
-                        profileController.currentUser.value.name! == null
-                            ? "User"
-                            : profileController.currentUser.value.name!,
+                        "Nitish kumar",
                         style: Theme.of(context).textTheme.bodyLarge,
                       ),
                     )
@@ -50,7 +46,7 @@ class LoginUserInfo extends StatelessWidget {
                   children: [
                     Obx(
                       () => Text(
-                        profileController.currentUser.value.email!,
+                        "Nitishr@gmail.com",
                         style: Theme.of(context).textTheme.labelLarge,
                       ),
                     )

@@ -3,9 +3,9 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sampark/Config/Images.dart';
 import 'package:sampark/Controller/AuthController.dart';
 import 'package:sampark/Controller/ImagePicker.dart';
-import 'package:sampark/Controller/ProfileController.dart';
 import 'package:sampark/Widget/PrimaryButton.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -14,15 +14,10 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     RxBool isEdit = false.obs;
-    ProfileController profileController = Get.put(ProfileController());
-    TextEditingController name =
-        TextEditingController(text: profileController.currentUser.value.name);
-    TextEditingController email =
-        TextEditingController(text: profileController.currentUser.value.email);
-    TextEditingController phone = TextEditingController(
-        text: profileController.currentUser.value.phoneNumber);
-    TextEditingController about =
-        TextEditingController(text: profileController.currentUser.value.about);
+    TextEditingController name = TextEditingController();
+    TextEditingController email = TextEditingController();
+    TextEditingController phone = TextEditingController();
+    TextEditingController about = TextEditingController();
     ImagePickerController imagePickerController =
         Get.put(ImagePickerController());
     RxString imagePath = "".obs;
@@ -60,40 +55,15 @@ class ProfilePage extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Obx(
-                              () => isEdit.value
-                                  ? InkWell(
-                                      onTap: () async {
-                                        imagePath.value =
-                                            await imagePickerController
-                                                .pickImage();
-                                        print("Image Picked" + imagePath.value);
-                                      },
-                                      child: Container(
-                                        height: 200,
-                                        width: 200,
-                                        decoration: BoxDecoration(
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .background,
-                                          borderRadius:
-                                              BorderRadius.circular(100),
-                                        ),
-                                        child: imagePath.value == ""
-                                            ? Icon(
-                                                Icons.add,
-                                              )
-                                            : ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(100),
-                                                child: Image.file(
-                                                  File(imagePath.value),
-                                                  fit: BoxFit.cover,
-                                                ),
-                                              ),
-                                      ),
-                                    )
-                                  : Container(
+                            isEdit.value
+                                ? InkWell(
+                                    onTap: () async {
+                                      imagePath.value =
+                                          await imagePickerController
+                                              .pickImage();
+                                      print("Image Picked" + imagePath.value);
+                                    },
+                                    child: Container(
                                       height: 200,
                                       width: 200,
                                       decoration: BoxDecoration(
@@ -103,26 +73,37 @@ class ProfilePage extends StatelessWidget {
                                         borderRadius:
                                             BorderRadius.circular(100),
                                       ),
-                                      child: profileController.currentUser.value
-                                                      .profileImage ==
-                                                  null ||
-                                              profileController.currentUser
-                                                      .value.profileImage ==
-                                                  ""
+                                      child: imagePath.value == ""
                                           ? Icon(
-                                              Icons.image,
+                                              Icons.add,
                                             )
                                           : ClipRRect(
                                               borderRadius:
                                                   BorderRadius.circular(100),
-                                              child: Image.network(
-                                                profileController.currentUser
-                                                    .value.profileImage!,
+                                              child: Image.file(
+                                                File(imagePath.value),
                                                 fit: BoxFit.cover,
                                               ),
                                             ),
                                     ),
-                            )
+                                  )
+                                : Container(
+                                    height: 200,
+                                    width: 200,
+                                    decoration: BoxDecoration(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .background,
+                                      borderRadius: BorderRadius.circular(100),
+                                    ),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(100),
+                                      child: Image.network(
+                                        AssetsImage.defaultProfileUrl,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
                           ],
                         ),
                         SizedBox(height: 20),
@@ -187,12 +168,6 @@ class ProfilePage extends StatelessWidget {
                                       btnName: "Save",
                                       icon: Icons.save,
                                       ontap: () async {
-                                        await profileController.updateProfile(
-                                          imagePath.value,
-                                          name.text,
-                                          about.text,
-                                          phone.text,
-                                        );
                                         isEdit.value = false;
                                       },
                                     )
