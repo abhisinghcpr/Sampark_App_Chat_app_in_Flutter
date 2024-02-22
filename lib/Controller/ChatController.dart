@@ -24,7 +24,8 @@ class ChatController extends GetxController {
     }
   }
 
-  Future<void> sendMessage(String targetUserId, String message) async {
+  Future<void> sendMessage(
+      String targetUserId, String message, UserModel targetUser) async {
     isLoading.value = true;
     String chatId = uuid.v6();
     String roomId = getRoomId(targetUserId);
@@ -43,7 +44,20 @@ class ChatController extends GetxController {
       senderName: controller.currentUser.value.name,
       timestamp: DateTime.now().toString(),
     );
+
+    var roomDetails = ChatRoomModel(
+      id: roomId,
+      lastMessage: message,
+      lastMessageTimestamp: DateTime.now().toString(),
+      sender: controller.currentUser.value,
+      receiver: targetUser,
+      timestamp: DateTime.now().toString(),
+      unReadMessNo: 0,
+    );
     try {
+      await db.collection("chats").doc(roomId).set(
+            roomDetails.toJson(),
+          );
       await db
           .collection("chats")
           .doc(roomId)
