@@ -9,8 +9,6 @@ class DbController extends GetxController {
   RxBool isLoading = false.obs;
   RxList<UserModel> userList = <UserModel>[].obs;
 
-
-
   void onInit() async {
     super.onInit();
     await getUserList();
@@ -32,5 +30,15 @@ class DbController extends GetxController {
       print(ex);
     }
     isLoading.value = false;
+  }
+
+  Stream<List<UserModel>> get userStream {
+    return db.collection("users").snapshots().map(
+          (event) => event.docs
+              .map(
+                (e) => UserModel.fromJson(e.data()),
+              )
+              .toList(),
+        );
   }
 }

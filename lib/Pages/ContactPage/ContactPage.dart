@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sampark/Controller/ChatController.dart';
 import 'package:sampark/Controller/ContactController.dart';
+import 'package:sampark/Controller/ProfileController.dart';
 import 'package:sampark/Pages/Chat/ChatPage.dart';
 import 'package:sampark/Pages/ContactPage/Widgets/ConactSearch.dart';
 import 'package:sampark/Pages/ContactPage/Widgets/NewContatcTile.dart';
@@ -17,7 +18,7 @@ class ContactPage extends StatelessWidget {
   Widget build(BuildContext context) {
     RxBool isSearchEnable = false.obs;
     ContactController contactController = Get.put(ContactController());
-
+    ProfileController profileController = Get.put(ProfileController());
     ChatController chatController = Get.put(ChatController());
     return Scaffold(
       appBar: AppBar(
@@ -73,7 +74,10 @@ class ContactPage extends StatelessWidget {
                               e.profileImage ?? AssetsImage.defaultProfileUrl,
                           name: e.name ?? "User",
                           lastChat: e.about ?? "Hey there",
-                          lastTime: "",
+                          lastTime: e.email ==
+                                  profileController.currentUser.value.email
+                              ? "You"
+                              : "",
                         ),
                       ),
                     )
