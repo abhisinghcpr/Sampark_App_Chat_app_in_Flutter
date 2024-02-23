@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:sampark/Controller/ProfileController.dart';
 import 'package:sampark/Model/ChatRoomModel.dart';
 import 'package:sampark/Model/UserMode.dart';
@@ -29,6 +30,9 @@ class ChatController extends GetxController {
     isLoading.value = true;
     String chatId = uuid.v6();
     String roomId = getRoomId(targetUserId);
+    DateTime timestamp = DateTime.now();
+    String nowTime = DateFormat('hh:mm a').format(timestamp);
+
     var newChat = ChatModel(
       id: chatId,
       message: message,
@@ -41,7 +45,7 @@ class ChatController extends GetxController {
     var roomDetails = ChatRoomModel(
       id: roomId,
       lastMessage: message,
-      lastMessageTimestamp: DateTime.now().toString(),
+      lastMessageTimestamp: nowTime,
       sender: controller.currentUser.value,
       receiver: targetUser,
       timestamp: DateTime.now().toString(),

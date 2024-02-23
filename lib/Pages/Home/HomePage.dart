@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:sampark/Config/Images.dart';
+import 'package:sampark/Controller/ContactController.dart';
 import 'package:sampark/Controller/ImagePicker.dart';
 import 'package:sampark/Pages/Home/Widget/ChatsList.dart';
 import 'package:sampark/Pages/Home/Widget/TabBar.dart';
 import 'package:sampark/Pages/ProfilePage/ProfilePage.dart';
+import 'package:sampark/Widget/demo.dart';
 
 import '../../Config/Strings.dart';
 import '../../Controller/ProfileController.dart';
@@ -22,7 +24,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     TabController tabController = TabController(length: 3, vsync: this);
     ProfileController profileController = Get.put(ProfileController());
-
+    ContactController contactController = Get.put(ContactController());
     ImagePickerController imagePickerController =
         Get.put(ImagePickerController());
     return Scaffold(
@@ -41,7 +43,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         actions: [
           IconButton(
             onPressed: () {
-              imagePickerController.pickImage();
+              Get.to(DemoPage());
             },
             icon: Icon(
               Icons.search,

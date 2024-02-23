@@ -45,6 +45,7 @@ dependencies:
   firebase_storage: ^11.6.5 # For Firebase Storage
   uuid: ^4.3.2 # For Uniq id 
   intl: ^0.19.0 # For Date and time format
+  cached_network_image: ^3.3.1 # For Cached Network Image
 dev_dependencies:
   flutter_test:
     sdk: flutter
