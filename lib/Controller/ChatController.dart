@@ -30,11 +30,9 @@ class ChatController extends GetxController {
     isLoading.value = true;
     String chatId = uuid.v6();
     String roomId = getRoomId(targetUserId);
-<<<<<<< HEAD
     DateTime timestamp = DateTime.now();
     String nowTime = DateFormat('hh:mm a').format(timestamp);
 
-=======
     var sender = UserModel(
       id: auth.currentUser!.uid,
       name: controller.currentUser.value.name,
@@ -42,7 +40,6 @@ class ChatController extends GetxController {
       profileImage: controller.currentUser.value.profileImage,
     );
     var newRoom = ChatRoomModel();
->>>>>>> 84cf6b35a00a59d18afff37dbec1a05b159043ea
     var newChat = ChatModel(
       id: chatId,
       message: message,
