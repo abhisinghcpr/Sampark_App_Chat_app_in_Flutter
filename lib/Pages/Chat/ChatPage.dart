@@ -108,6 +108,8 @@ class ChatPage extends StatelessWidget {
             InkWell(
               onTap: () {
                 if (messageController.text.isNotEmpty) {
+                  // chatController.sendMessage(
+                  //     userModel.id!, messageController.text, userModel);
                   chatController.sendMessage(
                       userModel.id!, messageController.text, userModel);
                   messageController.clear();
