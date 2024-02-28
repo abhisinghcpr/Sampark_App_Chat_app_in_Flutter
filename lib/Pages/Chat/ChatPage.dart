@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -7,6 +8,7 @@ import 'package:sampark/Controller/ChatController.dart';
 import 'package:sampark/Controller/ProfileController.dart';
 import 'package:sampark/Model/UserMode.dart';
 import 'package:sampark/Pages/Chat/Widgets/ChatBubble.dart';
+import 'package:sampark/Pages/Chat/Widgets/TypeMessage.dart';
 import 'package:sampark/Pages/UserProfile/ProfilePage.dart';
 
 import '../../Model/ChatModel.dart';
@@ -23,17 +25,32 @@ class ChatPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: InkWell(
+          splashColor: Colors.transparent,
+          highlightColor: Colors.transparent,
           onTap: () {
             Get.to(UserProfilePage(
               userModel: userModel,
             ));
           },
           child: Padding(
-            padding: const EdgeInsets.only(left: 10),
-            child: Image.asset(AssetsImage.boyPic),
+            padding: const EdgeInsets.all(5),
+            child: Container(
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(100),
+                child: CachedNetworkImage(
+                  imageUrl:
+                      userModel.profileImage ?? AssetsImage.defaultProfileUrl,
+                  fit: BoxFit.cover,
+                  placeholder: (context, url) => CircularProgressIndicator(),
+                  errorWidget: (context, url, error) => Icon(Icons.error),
+                ),
+              ),
+            ),
           ),
         ),
         title: InkWell(
+          splashColor: Colors.transparent,
+          highlightColor: Colors.transparent,
           onTap: () {
             Get.to(UserProfilePage(
               userModel: userModel,
@@ -71,61 +88,8 @@ class ChatPage extends StatelessWidget {
         ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: Container(
-        margin: EdgeInsets.all(10),
-        padding: EdgeInsets.symmetric(vertical: 5, horizontal: 15),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(100),
-            color: Theme.of(context).colorScheme.primaryContainer),
-        child: Row(
-          children: [
-            Container(
-              width: 30,
-              height: 30,
-              child: SvgPicture.asset(
-                AssetsImage.chatMicSvg,
-                width: 25,
-              ),
-            ),
-            SizedBox(width: 10),
-            Expanded(
-              child: TextField(
-                controller: messageController,
-                decoration: const InputDecoration(
-                    filled: false, hintText: "Type message ..."),
-              ),
-            ),
-            SizedBox(width: 10),
-            Container(
-              width: 30,
-              height: 30,
-              child: SvgPicture.asset(
-                AssetsImage.chatGallarySvg,
-                width: 25,
-              ),
-            ),
-            SizedBox(width: 10),
-            InkWell(
-              onTap: () {
-                if (messageController.text.isNotEmpty) {
-                  // chatController.sendMessage(
-                  //     userModel.id!, messageController.text, userModel);
-                  chatController.sendMessage(
-                      userModel.id!, messageController.text, userModel);
-                  messageController.clear();
-                }
-              },
-              child: Container(
-                width: 30,
-                height: 30,
-                child: SvgPicture.asset(
-                  AssetsImage.chatSendSvg,
-                  width: 25,
-                ),
-              ),
-            ),
-          ],
-        ),
+      floatingActionButton: TypeMessage(
+        userModel: userModel,
       ),
       body: Padding(
         padding: EdgeInsets.only(bottom: 70, top: 10, left: 10, right: 10),
