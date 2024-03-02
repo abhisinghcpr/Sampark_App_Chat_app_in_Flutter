@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sampark/Config/PagePath.dart';
 import 'package:sampark/Config/Themes.dart';
-import 'package:sampark/Pages/Auth/AuthPage.dart';
-import 'package:sampark/Pages/Home/HomePage.dart';
 import 'package:sampark/Pages/SplacePage/SplacePage.dart';
 import 'package:sampark/firebase_options.dart';
 
@@ -13,9 +11,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(
-    const MyApp(),
-  );
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {

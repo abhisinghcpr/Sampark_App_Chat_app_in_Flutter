@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sampark/Controller/ContactController.dart';
@@ -20,12 +21,7 @@ class DemoPage extends StatelessWidget {
               },
               child: Text("Get User List"),
             ),
-            ElevatedButton(
-              onPressed: () {
-                contactController.getChatRoomList();
-              },
-              child: Text("Get Chat Room List"),
-            ),
+         
           ],
         ),
       ),

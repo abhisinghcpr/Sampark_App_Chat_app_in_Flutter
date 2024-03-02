@@ -14,7 +14,8 @@ class ChatController extends GetxController {
   final db = FirebaseFirestore.instance;
   RxBool isLoading = false.obs;
   var uuid = Uuid();
-  ProfileController controller = Get.put(ProfileController());
+  RxString selectedImagePath = "".obs;
+  ProfileController profileController = Get.put(ProfileController());
 
   String getRoomId(String targetUserId) {
     String currentUserId = auth.currentUser!.uid;
@@ -45,8 +46,6 @@ class ChatController extends GetxController {
     }
   }
 
- 
-
   Future<void> sendMessage(
       String targetUserId, String message, UserModel targetUser) async {
     isLoading.value = true;
@@ -55,15 +54,23 @@ class ChatController extends GetxController {
     DateTime timestamp = DateTime.now();
     String nowTime = DateFormat('hh:mm a').format(timestamp);
 
-    UserModel sender = getSender(controller.currentUser.value, targetUser);
-    UserModel receiver = getReciver(controller.currentUser.value, targetUser);
+    UserModel sender =
+        getSender(profileController.currentUser.value, targetUser);
+    UserModel receiver =
+        getReciver(profileController.currentUser.value, targetUser);
 
+    RxString imageUrl = "".obs;
+    if (selectedImagePath.value.isNotEmpty) {
+      imageUrl.value =
+          await profileController.uploadFileToFirebase(selectedImagePath.value);
+    }
     var newChat = ChatModel(
       id: chatId,
       message: message,
+      imageUrl: imageUrl.value,
       senderId: auth.currentUser!.uid,
       receiverId: targetUserId,
-      senderName: controller.currentUser.value.name,
+      senderName: profileController.currentUser.value.name,
       timestamp: DateTime.now().toString(),
     );
 
@@ -85,6 +92,7 @@ class ChatController extends GetxController {
           .set(
             newChat.toJson(),
           );
+      selectedImagePath.value = "";
       await db.collection("chats").doc(roomId).set(
             roomDetails.toJson(),
           );
