@@ -33,13 +33,13 @@ class ChatBubble extends StatelessWidget {
               decoration: BoxDecoration(
                 color: Theme.of(context).colorScheme.primaryContainer,
                 borderRadius: isComming
-                    ? BorderRadius.only(
+                    ? const BorderRadius.only(
                         topLeft: Radius.circular(10),
                         topRight: Radius.circular(10),
                         bottomLeft: Radius.circular(0),
                         bottomRight: Radius.circular(10),
                       )
-                    : BorderRadius.only(
+                    : const BorderRadius.only(
                         topLeft: Radius.circular(10),
                         topRight: Radius.circular(10),
                         bottomLeft: Radius.circular(10),
@@ -57,16 +57,16 @@ class ChatBubble extends StatelessWidget {
                             imageUrl: imageUrl,
                             fit: BoxFit.cover,
                             placeholder: (context, url) =>
-                                CircularProgressIndicator(),
+                                const CircularProgressIndicator(),
                             errorWidget: (context, url, error) =>
-                                Icon(Icons.error),
+                                const Icon(Icons.error),
                           ),
                         ),
                         message == "" ? Container() : SizedBox(height: 10),
                         message == "" ? Container() : Text(message),
                       ],
                     )),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Row(
             mainAxisAlignment:
                 isComming ? MainAxisAlignment.start : MainAxisAlignment.end,
@@ -82,7 +82,7 @@ class ChatBubble extends StatelessWidget {
                           time,
                           style: Theme.of(context).textTheme.labelMedium,
                         ),
-                        SizedBox(width: 10),
+                        const SizedBox(width: 10),
                         SvgPicture.asset(
                           AssetsImage.chatStatusSvg,
                           width: 20,

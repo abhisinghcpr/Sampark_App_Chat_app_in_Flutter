@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:sampark/Controller/ChatController.dart';
 import 'package:sampark/Model/UserMode.dart';
 import '../../../Config/Images.dart';
 import '../../../Controller/ImagePicker.dart';
+import '../../../Widget/ImagePickerBottomSeet.dart';
 
 class TypeMessage extends StatelessWidget {
   final UserModel userModel;
@@ -48,9 +50,9 @@ class TypeMessage extends StatelessWidget {
           Obx(
             () => chatController.selectedImagePath.value == ""
                 ? InkWell(
-                    onTap: () async {
-                      chatController.selectedImagePath.value =
-                          await imagePickerController.pickImage();
+                    onTap: () {
+                      ImagePickerBottomSheet(
+                          context, chatController, imagePickerController);
                     },
                     child: Container(
                       width: 30,

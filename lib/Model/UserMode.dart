@@ -1,4 +1,3 @@
-
 class UserModel {
   String? id;
   String? name;
@@ -10,7 +9,16 @@ class UserModel {
   String? lastOnlineStatus;
   String? status;
 
-  UserModel({this.id, this.name, this.email, this.profileImage, this.phoneNumber, this.about, this.createdAt, this.lastOnlineStatus, this.status});
+  UserModel(
+      {this.id,
+      this.name,
+      this.email,
+      this.profileImage,
+      this.phoneNumber,
+      this.about,
+      this.createdAt,
+      this.lastOnlineStatus,
+      this.status});
 
   UserModel.fromJson(Map<String, dynamic> json) {
     id = json["id"];

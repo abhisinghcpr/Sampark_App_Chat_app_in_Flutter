@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:sampark/Controller/AuthController.dart';
 import 'package:sampark/Controller/ImagePicker.dart';
 import 'package:sampark/Controller/ProfileController.dart';
@@ -63,11 +64,11 @@ class ProfilePage extends StatelessWidget {
                               () => isEdit.value
                                   ? InkWell(
                                       splashColor: Colors.transparent,
-          highlightColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
                                       onTap: () async {
                                         imagePath.value =
                                             await imagePickerController
-                                                .pickImage();
+                                                .pickImage(ImageSource.gallery);
                                         print("Image Picked" + imagePath.value);
                                       },
                                       child: Container(
