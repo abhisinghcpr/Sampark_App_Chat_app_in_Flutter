@@ -7,6 +7,7 @@ import 'package:sampark/Controller/ProfileController.dart';
 import 'package:sampark/Pages/Chat/ChatPage.dart';
 import 'package:sampark/Pages/ContactPage/Widgets/ConactSearch.dart';
 import 'package:sampark/Pages/ContactPage/Widgets/NewContatcTile.dart';
+import 'package:sampark/Pages/Groups/NewGroup/NewGroup.dart';
 
 import '../../Config/Images.dart';
 import '../Home/Widget/ChatTile.dart';
@@ -52,7 +53,9 @@ class ContactPage extends StatelessWidget {
             NewContactTile(
               btnName: "New Group",
               icon: Icons.group_add,
-              ontap: () {},
+              ontap: () {
+                Get.to(NewGroup());
+              },
             ),
             SizedBox(height: 10),
             Row(
@@ -66,8 +69,8 @@ class ContactPage extends StatelessWidget {
                 children: contactController.userList
                     .map(
                       (e) => InkWell(
-                          splashColor: Colors.transparent,
-          highlightColor: Colors.transparent,
+                        splashColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
                         onTap: () {
                           Get.to(ChatPage(userModel: e));
                         },

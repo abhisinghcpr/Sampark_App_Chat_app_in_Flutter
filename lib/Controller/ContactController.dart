@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:sampark/Model/ChatRoomModel.dart';
 import 'package:sampark/Model/UserMode.dart';
@@ -59,5 +60,35 @@ class ContactController extends GetxController {
         .toList();
 
     print(chatRoomList);
+  }
+
+  Future<void> saveContact(UserModel user) async {
+    try {
+      await db
+          .collection("users")
+          .doc(auth.currentUser!.uid)
+          .collection("contacts")
+          .doc(user.id)
+          .set(user.toJson());
+    } catch (ex) {
+      if (kDebugMode) {
+        print("Error while saving Contact" + ex.toString());
+      }
+    }
+  }
+
+  Stream<List<UserModel>> getContacts() {
+    return db
+        .collection("users")
+        .doc(auth.currentUser!.uid)
+        .collection("contacts")
+        .snapshots()
+        .map(
+          (snapshot) => snapshot.docs
+              .map(
+                (doc) => UserModel.fromJson(doc.data()),
+              )
+              .toList(),
+        );
   }
 }

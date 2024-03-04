@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:sampark/Config/Images.dart';
 import 'package:sampark/Controller/ContactController.dart';
 import 'package:sampark/Controller/ImagePicker.dart';
+import 'package:sampark/Pages/Groups/GroupsPage.dart';
 import 'package:sampark/Pages/Home/Widget/ChatsList.dart';
 import 'package:sampark/Pages/Home/Widget/TabBar.dart';
 import 'package:sampark/Pages/ProfilePage/ProfilePage.dart';
@@ -76,13 +77,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           controller: tabController,
           children: [
             ChatList(),
-            ListView(
-              children: [
-                ListTile(
-                  title: Text("Name Nitish"),
-                )
-              ],
-            ),
+            GroupPage(),
             ListView(
               children: [
                 ListTile(
