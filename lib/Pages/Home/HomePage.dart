@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:sampark/Config/Images.dart';
 import 'package:sampark/Controller/ContactController.dart';
 import 'package:sampark/Controller/ImagePicker.dart';
+import 'package:sampark/Controller/StatusController.dart';
 import 'package:sampark/Pages/Groups/GroupsPage.dart';
 import 'package:sampark/Pages/Home/Widget/ChatsList.dart';
 import 'package:sampark/Pages/Home/Widget/TabBar.dart';
@@ -28,6 +29,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     ContactController contactController = Get.put(ContactController());
     ImagePickerController imagePickerController =
         Get.put(ImagePickerController());
+    StatusController statusController = Get.put(StatusController());
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.primaryContainer,

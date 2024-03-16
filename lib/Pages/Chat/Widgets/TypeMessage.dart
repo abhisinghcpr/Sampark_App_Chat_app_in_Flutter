@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:sampark/Controller/ChatController.dart';
 import 'package:sampark/Model/UserMode.dart';
 import '../../../Config/Images.dart';
@@ -19,6 +18,7 @@ class TypeMessage extends StatelessWidget {
     RxString message = "".obs;
     ImagePickerController imagePickerController =
         Get.put(ImagePickerController());
+
     return Container(
       // margin: EdgeInsets.all(10),
       padding: EdgeInsets.symmetric(vertical: 5, horizontal: 15),
@@ -40,6 +40,15 @@ class TypeMessage extends StatelessWidget {
             child: TextField(
               onChanged: (value) {
                 message.value = value;
+                print("typing...");
+                if (value.isNotEmpty) {
+                  print("typing...");
+                } else {
+                  print("not typing");
+                }
+              },
+              onEditingComplete: () {
+                print("onEditingComplete");
               },
               controller: messageController,
               decoration: const InputDecoration(
