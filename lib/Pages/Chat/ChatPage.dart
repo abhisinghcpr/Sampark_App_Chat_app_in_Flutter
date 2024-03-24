@@ -4,11 +4,14 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:sampark/Config/Images.dart';
 import 'package:sampark/Controller/CallController.dart';
 import 'package:sampark/Controller/ChatController.dart';
 import 'package:sampark/Controller/ProfileController.dart';
 import 'package:sampark/Model/UserMode.dart';
+import 'package:sampark/Pages/CallPage/AudioCallPage.dart';
+import 'package:sampark/Pages/CallPage/VideoCall.dart';
 import 'package:sampark/Pages/Chat/Widgets/ChatBubble.dart';
 import 'package:sampark/Pages/Chat/Widgets/TypeMessage.dart';
 import 'package:sampark/Pages/UserProfile/ProfilePage.dart';
@@ -90,15 +93,24 @@ class ChatPage extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              callController.callAction(
-                  userModel, profileController.currentUser.value);
+              if (Permission.notification.isGranted == true) {
+                Get.to(AudioCallPage(target: userModel));
+                callController.callAction(
+                    userModel, profileController.currentUser.value, "audio");
+              } else {
+                Permission.notification.request();
+              }
             },
             icon: Icon(
               Icons.phone,
             ),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Get.to(VideoCallPage(target: userModel));
+              callController.callAction(
+                  userModel, profileController.currentUser.value, "video");
+            },
             icon: Icon(
               Icons.video_call,
             ),
