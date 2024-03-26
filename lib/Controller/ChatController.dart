@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:sampark/Controller/ContactController.dart';
 import 'package:sampark/Controller/ProfileController.dart';
+import 'package:sampark/Model/AudioCall.dart';
 import 'package:sampark/Model/ChatRoomModel.dart';
 import 'package:sampark/Model/UserMode.dart';
 import 'package:uuid/uuid.dart';
@@ -127,5 +128,21 @@ class ChatController extends GetxController {
         return UserModel.fromJson(event.data()!);
       },
     );
+  }
+
+  Stream<List<CallModel>> getCalls() {
+    return db
+        .collection("users")
+        .doc(auth.currentUser!.uid)
+        .collection("calls")
+        .orderBy("timestamp", descending: true)
+        .snapshots()
+        .map(
+          (snapshot) => snapshot.docs
+              .map(
+                (doc) => CallModel.fromJson(doc.data()),
+              )
+              .toList(),
+        );
   }
 }

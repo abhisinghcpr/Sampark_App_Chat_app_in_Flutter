@@ -93,13 +93,9 @@ class ChatPage extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              if (Permission.notification.isGranted == true) {
-                Get.to(AudioCallPage(target: userModel));
-                callController.callAction(
-                    userModel, profileController.currentUser.value, "audio");
-              } else {
-                Permission.notification.request();
-              }
+              Get.to(AudioCallPage(target: userModel));
+              callController.callAction(
+                  userModel, profileController.currentUser.value, "audio");
             },
             icon: Icon(
               Icons.phone,

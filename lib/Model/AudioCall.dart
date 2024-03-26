@@ -10,6 +10,8 @@ class CallModel {
   String? receiverEmail;
   String? status;
   String? type;
+  String? time;
+  String? timestamp;
 
   CallModel({
     this.id,
@@ -23,6 +25,8 @@ class CallModel {
     this.receiverEmail,
     this.status,
     this.type,
+    this.time,
+    this.timestamp,
   });
 
   CallModel.fromJson(Map<String, dynamic> json) {
@@ -37,6 +41,8 @@ class CallModel {
     receiverEmail = json["receiverEmail"];
     status = json["status"];
     type = json["type"];
+    type = json["time"];
+    timestamp = json["timestamp"];
   }
 
   Map<String, dynamic> toJson() {
@@ -52,6 +58,8 @@ class CallModel {
     _data["receiverEmail"] = receiverEmail;
     _data["status"] = status;
     _data["type"] = type;
+    _data["time"] = time;
+    _data["timestamp"] = timestamp;
     return _data;
   }
 }
