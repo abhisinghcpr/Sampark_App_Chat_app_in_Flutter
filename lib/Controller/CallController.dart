@@ -93,14 +93,12 @@ class CallController extends GetxController {
           .collection("users")
           .doc(auth.currentUser!.uid)
           .collection("calls")
-          .doc(id)
-          .set(newCall.toJson());
+          .add(newCall.toJson());
       await db
           .collection("users")
           .doc(reciver.id)
           .collection("calls")
-          .doc(id)
-          .set(newCall.toJson());
+          .add(newCall.toJson());
       Future.delayed(Duration(seconds: 20), () {
         endCall(newCall);
       });
