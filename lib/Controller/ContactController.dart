@@ -14,7 +14,6 @@ class ContactController extends GetxController {
   void onInit() async {
     super.onInit();
     await getUserList();
-    await getChatRoomList();
   }
 
   Future<void> getUserList() async {
@@ -36,30 +35,17 @@ class ContactController extends GetxController {
     isLoading.value = false;
   }
 
-  Future<void> getChatRoomList() async {
-    List<ChatRoomModel> tempChatRoom = [];
-    await db
+ 
+
+  Stream<List<ChatRoomModel>> getChatRoom() {
+    return db
         .collection('chats')
         .orderBy("timestamp", descending: true)
-        .get()
-        .then(
-      (value) {
-        tempChatRoom = value.docs
-            .map(
-              (e) => ChatRoomModel.fromJson(e.data()),
-            )
-            .toList();
-      },
-    );
-    chatRoomList.value = tempChatRoom
-        .where(
-          (e) => e.id!.contains(
-            auth.currentUser!.uid,
-          ),
-        )
-        .toList();
-
-    print(chatRoomList);
+        .snapshots()
+        .map((snapshot) => snapshot.docs
+            .map((doc) => ChatRoomModel.fromJson(doc.data()))
+            .where((chatRoom) => chatRoom.id!.contains(auth.currentUser!.uid))
+            .toList());
   }
 
   Future<void> saveContact(UserModel user) async {

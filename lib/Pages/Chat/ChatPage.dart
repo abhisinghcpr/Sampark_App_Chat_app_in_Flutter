@@ -123,6 +123,8 @@ class ChatPage extends StatelessWidget {
                   StreamBuilder(
                     stream: chatController.getMessages(userModel.id!),
                     builder: (context, snapshot) {
+                      var roomid = chatController.getRoomId(userModel.id!);
+                      chatController.markMessagesAsRead(roomid!);
                       if (snapshot.connectionState == ConnectionState.waiting) {
                         return const Center(
                           child: CircularProgressIndicator(),
@@ -146,12 +148,13 @@ class ChatPage extends StatelessWidget {
                                 snapshot.data![index].timestamp!);
                             String formattedTime =
                                 DateFormat('hh:mm a').format(timestamp);
+
                             return ChatBubble(
                               message: snapshot.data![index].message!,
                               imageUrl: snapshot.data![index].imageUrl ?? "",
                               isComming: snapshot.data![index].receiverId ==
                                   profileController.currentUser.value.id,
-                              status: "read",
+                              status: snapshot.data![index].readStatus!,
                               time: formattedTime,
                             );
                           },

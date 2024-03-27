@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
@@ -17,6 +19,7 @@ class ChatController extends GetxController {
   RxBool isLoading = false.obs;
   var uuid = Uuid();
   RxString selectedImagePath = "".obs;
+  @override
   ProfileController profileController = Get.put(ProfileController());
   ContactController contactController = Get.put(ContactController());
   String getRoomId(String targetUserId) {
@@ -74,6 +77,7 @@ class ChatController extends GetxController {
       receiverId: targetUserId,
       senderName: profileController.currentUser.value.name,
       timestamp: DateTime.now().toString(),
+      readStatus: "unread",
     );
 
     var roomDetails = ChatRoomModel(
@@ -144,5 +148,40 @@ class ChatController extends GetxController {
               )
               .toList(),
         );
+  }
+
+  Stream<int> getUnreadMessageCount(
+    String roomId,
+  ) {
+    return db
+        .collection("chats")
+        .doc(roomId)
+        .collection("messages")
+        .where("readStatus", isEqualTo: "unread")
+        .where("senderId", isNotEqualTo: profileController.currentUser.value.id)
+        .snapshots()
+        .map((snapshot) => snapshot.docs.length);
+  }
+
+  Future<void> markMessagesAsRead(String roomId) async {
+    QuerySnapshot<Map<String, dynamic>> messagesSnapshot = await db
+        .collection("chats")
+        .doc(roomId)
+        .collection("messages")
+        .where("readStatus", isEqualTo: "unread")
+        .get();
+
+    for (QueryDocumentSnapshot<Map<String, dynamic>> messageDoc
+        in messagesSnapshot.docs) {
+      String senderId = messageDoc.data()["senderId"];
+      if (senderId != profileController.currentUser.value.id) {
+        await db
+            .collection("chats")
+            .doc(roomId)
+            .collection("messages")
+            .doc(messageDoc.id)
+            .update({"readStatus": "read"});
+      }
+    }
   }
 }

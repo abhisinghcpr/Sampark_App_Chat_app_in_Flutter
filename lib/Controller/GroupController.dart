@@ -92,6 +92,21 @@ class GroupController extends GetxController {
     isLoading.value = false;
   }
 
+Stream<List<GroupModel>> getGroupss() {
+  isLoading.value = true;
+  return db.collection('groups').snapshots().map((snapshot) {
+    List<GroupModel> tempGroup = snapshot.docs
+        .map((doc) => GroupModel.fromJson(doc.data()))
+        .toList();
+    groupList.clear();
+    groupList.value = tempGroup
+        .where((group) => group.members!.any((member) => member.id == auth.currentUser!.uid))
+        .toList();
+    isLoading.value = false;
+    return groupList;
+  });
+}
+
   Future<void> sendGroupMessage(
       String message, String groupId, String imagePath) async {
     isLoading.value = true;

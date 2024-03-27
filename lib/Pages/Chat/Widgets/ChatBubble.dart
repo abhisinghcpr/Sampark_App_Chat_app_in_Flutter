@@ -85,6 +85,7 @@ class ChatBubble extends StatelessWidget {
                         const SizedBox(width: 10),
                         SvgPicture.asset(
                           AssetsImage.chatStatusSvg,
+                          color: status == "read" ? Colors.green : Colors.grey,
                           width: 20,
                         )
                       ],
