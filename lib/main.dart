@@ -4,6 +4,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:sampark/Config/PagePath.dart';
 import 'package:sampark/Config/Themes.dart';
+import 'package:sampark/Pages/SplacePage/SplacePage.dart';
 import 'package:sampark/firebase_options.dart';
 
 void main() async {
