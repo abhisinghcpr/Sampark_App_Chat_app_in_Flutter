@@ -13,6 +13,7 @@ import 'package:sampark/Pages/ProfilePage/ProfilePage.dart';
 import 'package:sampark/Widget/demo.dart';
 
 import '../../Config/Strings.dart';
+import '../../Controller/CallController.dart';
 import '../../Controller/ProfileController.dart';
 
 class HomePage extends StatefulWidget {
@@ -31,6 +32,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     ImagePickerController imagePickerController =
         Get.put(ImagePickerController());
     StatusController statusController = Get.put(StatusController());
+    CallController callController = Get.put(CallController());
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.primaryContainer,

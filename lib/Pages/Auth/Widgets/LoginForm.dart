@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sampark/Controller/AuthController.dart';
+import 'package:sampark/Pages/Auth/ForgotPassword.dart';
 import 'package:sampark/Widget/PrimaryButton.dart';
 
 class LoginForm extends StatelessWidget {
@@ -32,6 +33,21 @@ class LoginForm extends StatelessWidget {
               Icons.password_outlined,
             ),
           ),
+        ),
+        const SizedBox(height: 10),
+        Row(
+          children: [
+            InkWell(
+              onTap: () {
+                Get.to(ForgotPassword());
+              },
+              child: Text("Forgot Password ? ",
+                  style: TextStyle(
+                    fontSize: 13,
+                    color: Theme.of(context).colorScheme.primary,
+                  )),
+            )
+          ],
         ),
         const SizedBox(height: 60),
         Obx(

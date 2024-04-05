@@ -4,10 +4,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:sampark/Config/PagePath.dart';
 import 'package:sampark/Config/Themes.dart';
-import 'package:sampark/Controller/CallController.dart';
-import 'package:sampark/Pages/SplacePage/SplacePage.dart';
-import 'package:sampark/Widget/demo.dart';
-import 'package:sampark/demopage.dart';
 import 'package:sampark/firebase_options.dart';
 
 void main() async {
@@ -23,7 +19,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    CallController callController = Get.put(CallController());
     return GetMaterialApp(
       builder: FToastBuilder(),
       title: 'Sampark',
