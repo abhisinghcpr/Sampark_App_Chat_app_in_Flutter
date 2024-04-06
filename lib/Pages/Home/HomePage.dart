@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:sampark/Config/Images.dart';
+import 'package:sampark/Controller/AppConntroller.dart';
 import 'package:sampark/Controller/ContactController.dart';
 import 'package:sampark/Controller/ImagePicker.dart';
 import 'package:sampark/Controller/StatusController.dart';
@@ -33,6 +34,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         Get.put(ImagePickerController());
     StatusController statusController = Get.put(StatusController());
     CallController callController = Get.put(CallController());
+    AppController appController = Get.put(AppController());
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.primaryContainer,
@@ -49,7 +52,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         actions: [
           IconButton(
             onPressed: () {
-              Get.to(DemoPage());
+              appController.checkLatestVersion();
             },
             icon: Icon(
               Icons.search,
