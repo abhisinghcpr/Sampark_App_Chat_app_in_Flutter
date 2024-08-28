@@ -4,14 +4,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:sampark/Controller/ContactController.dart';
-import 'package:sampark/Controller/ProfileController.dart';
-import 'package:sampark/Model/AudioCall.dart';
-import 'package:sampark/Model/ChatRoomModel.dart';
-import 'package:sampark/Model/UserMode.dart';
 import 'package:uuid/uuid.dart';
 
+import '../Model/AudioCall.dart';
 import '../Model/ChatModel.dart';
+import '../Model/ChatRoomModel.dart';
+import '../Model/UserMode.dart';
+import 'ContactController.dart';
+import 'ProfileController.dart';
 
 class ChatController extends GetxController {
   final auth = FirebaseAuth.instance;
@@ -184,4 +184,88 @@ class ChatController extends GetxController {
       }
     }
   }
+  Future<void> deleteCall(String callId) async {
+    try {
+
+      QuerySnapshot callsSnapshot = await db
+          .collection("users")
+          .doc(auth.currentUser!.uid)
+          .collection("calls")
+          .where("id", isEqualTo: callId)
+          .get();
+
+      for (QueryDocumentSnapshot doc in callsSnapshot.docs) {
+        await doc.reference.delete();
+      }
+
+
+      await db
+          .collection("notification")
+          .doc(auth.currentUser!.uid)
+          .collection("call")
+          .doc(callId)
+          .delete();
+
+    } catch (e) {
+      print("Error deleting call: $e");
+      throw e;
+    }
+  }
+
+
+
+  Future<void> deleteMessage(String messageId, String targetUserId) async {
+    try {
+      String roomId = getRoomId(targetUserId);
+
+      // Delete the message
+      await db
+          .collection("chats")
+          .doc(roomId)
+          .collection("messages")
+          .doc(messageId)
+          .delete();
+
+      // Update the last message in the chat room if necessary
+      DocumentSnapshot roomSnapshot = await db.collection("chats").doc(roomId).get();
+      if (roomSnapshot.exists) {
+        ChatRoomModel roomData = ChatRoomModel.fromJson(roomSnapshot.data() as Map<String, dynamic>);
+
+        // Fetch the new last message
+        QuerySnapshot lastMessageQuery = await db
+            .collection("chats")
+            .doc(roomId)
+            .collection("messages")
+            .orderBy("timestamp", descending: true)
+            .limit(1)
+            .get();
+
+        if (lastMessageQuery.docs.isNotEmpty) {
+          ChatModel lastMessage = ChatModel.fromJson(lastMessageQuery.docs.first.data() as Map<String, dynamic>);
+
+          // Update the chat room with the new last message
+          await db.collection("chats").doc(roomId).update({
+            "lastMessage": lastMessage.message,
+            "lastMessageTimestamp": DateFormat('hh:mm a').format(DateTime.parse(lastMessage.timestamp!)),
+            "timestamp": lastMessage.timestamp,
+          });
+        } else {
+          // If there are no messages left, you might want to delete the chat room or update it accordingly
+          await db.collection("chats").doc(roomId).update({
+            "lastMessage": "",
+            "lastMessageTimestamp": "",
+            "timestamp": DateTime.now().toString(),
+          });
+        }
+      }
+
+      Get.snackbar('Success', 'Message deleted successfully');
+    } catch (e) {
+      print("Error deleting message: $e");
+      Get.snackbar('Error', 'Failed to delete message');
+    }
+  }
+
+
+
 }

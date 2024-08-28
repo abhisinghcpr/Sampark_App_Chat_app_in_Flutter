@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
-import 'package:sampark/Pages/Auth/AuthPage.dart';
-import 'package:sampark/Pages/Chat/ChatPage.dart';
-import 'package:sampark/Pages/Home/HomePage.dart';
+
+import '../Pages/Auth/AuthPage.dart';
 import '../Pages/ContactPage/ContactPage.dart';
+import '../Pages/Home/HomePage.dart';
 import '../Pages/ProfilePage/ProfilePage.dart';
 
 var pagePath = [

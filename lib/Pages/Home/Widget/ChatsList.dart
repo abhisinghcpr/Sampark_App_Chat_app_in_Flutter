@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sampark/Config/Images.dart';
-import 'package:sampark/Controller/ChatController.dart';
-import 'package:sampark/Controller/ContactController.dart';
-import 'package:sampark/Controller/ProfileController.dart';
-import 'package:sampark/Pages/Chat/ChatPage.dart';
-import 'package:sampark/Pages/Home/Widget/ChatTile.dart';
-
+import 'package:get/get_core/src/get_main.dart';
+import '../../../Config/Images.dart';
+import '../../../Controller/ChatController.dart';
+import '../../../Controller/ContactController.dart';
+import '../../../Controller/ProfileController.dart';
 import '../../../Model/ChatRoomModel.dart';
+import '../../Chat/ChatPage.dart';
+import 'ChatTile.dart';
 
 class ChatList extends StatelessWidget {
   const ChatList({super.key});

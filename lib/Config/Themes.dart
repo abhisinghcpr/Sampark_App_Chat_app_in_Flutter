@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sampark/Config/Colors.dart';
+
+import 'Colors.dart';
 
 var lightTheme = ThemeData();
 var darkTheme = ThemeData(

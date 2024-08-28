@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sampark/Controller/ContactController.dart';
+import '../Controller/ContactController.dart';
 
 class DemoPage extends StatelessWidget {
   const DemoPage({super.key});

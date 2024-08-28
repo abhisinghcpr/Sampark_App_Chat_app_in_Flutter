@@ -2,10 +2,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-import 'package:sampark/Config/PagePath.dart';
-import 'package:sampark/Config/Themes.dart';
-import 'package:sampark/Pages/SplacePage/SplacePage.dart';
-import 'package:sampark/firebase_options.dart';
+import 'Config/PagePath.dart';
+import 'Config/Themes.dart';
+import 'Pages/SplacePage/SplacePage.dart';
+import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,8 +21,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       builder: FToastBuilder(),
-      title: 'Sampark',
+      title: 'WeChat',
       theme: lightTheme,
       getPages: pagePath,
       darkTheme: darkTheme,

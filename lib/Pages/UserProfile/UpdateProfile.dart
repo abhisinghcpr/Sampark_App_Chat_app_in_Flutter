@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sampark/Widget/PrimaryButton.dart';
+import '../../Widget/PrimaryButton.dart';
 
 class UserUpdateProfile extends StatelessWidget {
   const UserUpdateProfile({super.key});
@@ -78,8 +78,8 @@ class UserUpdateProfile extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(height: 10),
-                    TextField(
+                    const SizedBox(height: 10),
+                    const TextField(
                       textInputAction: TextInputAction.next,
                       decoration: InputDecoration(
                         hintText: "Example@gmail.com",
@@ -107,7 +107,7 @@ class UserUpdateProfile extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(height: 40),
+                    const SizedBox(height: 40),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [

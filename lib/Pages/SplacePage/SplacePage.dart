@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:sampark/Config/Images.dart';
-import 'package:sampark/Controller/SplaceController.dart';
+
+import '../../Config/Images.dart';
+import '../../Controller/SplaceController.dart';
 
 class SplacePage extends StatelessWidget {
   const SplacePage({super.key});
@@ -14,6 +15,8 @@ class SplacePage extends StatelessWidget {
       body: Center(
         child: SvgPicture.asset(
           AssetsImage.appIconSVG,
+          width: 100,
+          height: 100,
         ),
       ),
     );

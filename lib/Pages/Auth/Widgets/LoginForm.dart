@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sampark/Controller/AuthController.dart';
-import 'package:sampark/Pages/Auth/ForgotPassword.dart';
-import 'package:sampark/Widget/PrimaryButton.dart';
+
+import '../../../Controller/AuthController.dart';
+import '../../../Widget/PrimaryButton.dart';
+import '../ForgotPassword.dart';
+
 
 class LoginForm extends StatelessWidget {
   const LoginForm({super.key});

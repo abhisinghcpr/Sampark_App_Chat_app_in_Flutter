@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:sampark/Pages/Auth/Widgets/AuthPageBody.dart';
-import 'package:sampark/Pages/Welcome/Widgets/WelcomeHeading.dart';
+
+import '../Welcome/Widgets/WelcomeHeading.dart';
+import 'Widgets/AuthPageBody.dart';
 
 class AuthPage extends StatelessWidget {
   const AuthPage({super.key});

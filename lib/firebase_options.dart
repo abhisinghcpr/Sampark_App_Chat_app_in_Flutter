@@ -17,10 +17,7 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -28,15 +25,9 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return macos;
       case TargetPlatform.windows:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for windows - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return windows;
       case TargetPlatform.linux:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for linux - '
@@ -50,19 +41,58 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCHvS95PgCyihci4hXiEI_e3fmnmJtfxtg',
-    appId: '1:884714113001:android:b04917e4837979ce6f2d78',
-    messagingSenderId: '884714113001',
-    projectId: 'sampark-chat-app',
-    storageBucket: 'sampark-chat-app.appspot.com',
+    apiKey: 'AIzaSyB4oB_Bdxtgj-eH-nMBQgV_ArLp53hF8TA',
+    appId: '1:88859348373:android:1cbf9bd1d3f60eb5a6fa9c',
+    messagingSenderId: '88859348373',
+    projectId: 'wechat-51d16',
+    databaseURL: 'https://wechat-51d16-default-rtdb.firebaseio.com',
+    storageBucket: 'wechat-51d16.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDsVsC_Adt17OA64exVp3e-Civg1QvMadY',
-    appId: '1:884714113001:ios:e8557a18a3837ed16f2d78',
-    messagingSenderId: '884714113001',
-    projectId: 'sampark-chat-app',
-    storageBucket: 'sampark-chat-app.appspot.com',
+    apiKey: 'AIzaSyBzSgU9FdaDivlmoOyGKHBXmCXw7D8KEqg',
+    appId: '1:88859348373:ios:dedc05e319829e89a6fa9c',
+    messagingSenderId: '88859348373',
+    projectId: 'wechat-51d16',
+    databaseURL: 'https://wechat-51d16-default-rtdb.firebaseio.com',
+    storageBucket: 'wechat-51d16.appspot.com',
+    androidClientId: '88859348373-7v93ggen13mn3vrlrtjl4b5apvolf4n1.apps.googleusercontent.com',
+    iosClientId: '88859348373-ut4kb22gjuatrqi66er5umpmtd21fr5q.apps.googleusercontent.com',
     iosBundleId: 'com.example.sampark',
   );
+
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyC6CRc2y_Tw42XCgGShID0MUl6P-y-eyPQ',
+    appId: '1:88859348373:web:c0a36c3093737aaaa6fa9c',
+    messagingSenderId: '88859348373',
+    projectId: 'wechat-51d16',
+    authDomain: 'wechat-51d16.firebaseapp.com',
+    databaseURL: 'https://wechat-51d16-default-rtdb.firebaseio.com',
+    storageBucket: 'wechat-51d16.appspot.com',
+    measurementId: 'G-0FB6BX825H',
+  );
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyBzSgU9FdaDivlmoOyGKHBXmCXw7D8KEqg',
+    appId: '1:88859348373:ios:dedc05e319829e89a6fa9c',
+    messagingSenderId: '88859348373',
+    projectId: 'wechat-51d16',
+    databaseURL: 'https://wechat-51d16-default-rtdb.firebaseio.com',
+    storageBucket: 'wechat-51d16.appspot.com',
+    androidClientId: '88859348373-7v93ggen13mn3vrlrtjl4b5apvolf4n1.apps.googleusercontent.com',
+    iosClientId: '88859348373-ut4kb22gjuatrqi66er5umpmtd21fr5q.apps.googleusercontent.com',
+    iosBundleId: 'com.example.sampark',
+  );
+
+  static const FirebaseOptions windows = FirebaseOptions(
+    apiKey: 'AIzaSyC6CRc2y_Tw42XCgGShID0MUl6P-y-eyPQ',
+    appId: '1:88859348373:web:ef5fe05833499852a6fa9c',
+    messagingSenderId: '88859348373',
+    projectId: 'wechat-51d16',
+    authDomain: 'wechat-51d16.firebaseapp.com',
+    databaseURL: 'https://wechat-51d16-default-rtdb.firebaseio.com',
+    storageBucket: 'wechat-51d16.appspot.com',
+    measurementId: 'G-DT47SB8V5W',
+  );
+
 }

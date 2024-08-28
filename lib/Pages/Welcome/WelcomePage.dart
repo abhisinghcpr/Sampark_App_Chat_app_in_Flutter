@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:sampark/Config/Images.dart';
-import 'package:sampark/Config/Strings.dart';
-import 'package:sampark/Pages/Welcome/Widgets/WelcomeBody.dart';
-import 'package:sampark/Pages/Welcome/Widgets/WelcomeFooterButton.dart';
-import 'package:sampark/Pages/Welcome/Widgets/WelcomeHeading.dart';
-import 'package:slide_to_act/slide_to_act.dart';
+
+import 'Widgets/WelcomeBody.dart';
+import 'Widgets/WelcomeFooterButton.dart';
+import 'Widgets/WelcomeHeading.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});

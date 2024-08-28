@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sampark/Config/Images.dart';
-import 'package:sampark/Controller/GroupController.dart';
-import 'package:sampark/Pages/GroupChat/GroupChat.dart';
-import 'package:sampark/Pages/Home/Widget/ChatTile.dart';
 
+
+import '../../Config/Images.dart';
+import '../../Controller/GroupController.dart';
 import '../../Model/GroupModel.dart';
+import '../GroupChat/GroupChat.dart';
+import '../Home/Widget/ChatTile.dart';
 
 class GroupPage extends StatelessWidget {
   const GroupPage({super.key});

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sampark/Controller/ChatController.dart';
+
+import 'Controller/ChatController.dart';
 
 class DemoPage2 extends StatelessWidget {
   const DemoPage2({super.key});

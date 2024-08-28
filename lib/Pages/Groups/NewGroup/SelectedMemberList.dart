@@ -1,8 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sampark/Config/Images.dart';
-import 'package:sampark/Controller/GroupController.dart';
+
+import '../../../Config/Images.dart';
+import '../../../Controller/GroupController.dart';
 
 class SelectedMembers extends StatelessWidget {
   const SelectedMembers({super.key});

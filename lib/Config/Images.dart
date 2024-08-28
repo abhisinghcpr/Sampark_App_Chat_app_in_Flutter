@@ -23,6 +23,6 @@ class AssetsImage {
   static const profileAudioCall = "$iconsPath/call.svg";
 
   static const groupAddUser = "$iconsPath/addUser.svg";
-  //
+
 
 }

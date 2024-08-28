@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sampark/Controller/AuthController.dart';
-import 'package:sampark/Widget/PrimaryButton.dart';
+
+import '../../Controller/AuthController.dart';
+import '../../Widget/PrimaryButton.dart';
+
 
 class ForgotPassword extends StatelessWidget {
   const ForgotPassword({super.key});

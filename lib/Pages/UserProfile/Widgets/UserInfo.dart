@@ -35,8 +35,8 @@ class LoginUserInfo extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
-                      width: 150,
-                      height: 150,
+                      width: 120,
+                      height: 120,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(100),
                         child: CachedNetworkImage(
@@ -84,7 +84,7 @@ class LoginUserInfo extends StatelessWidget {
                       child: Row(children: [
                         SvgPicture.asset(
                           AssetsImage.profileAudioCall,
-                          width: 25,
+                          width: 20,
                         ),
                         SizedBox(width: 10),
                         Text(
@@ -105,7 +105,7 @@ class LoginUserInfo extends StatelessWidget {
                       child: Row(children: [
                         SvgPicture.asset(
                           AssetsImage.profileVideoCall,
-                          width: 25,
+                          width: 0,
                           color: Color(0xffFF9900),
                         ),
                         SizedBox(width: 10),
@@ -127,7 +127,7 @@ class LoginUserInfo extends StatelessWidget {
                       child: Row(children: [
                         SvgPicture.asset(
                           AssetsImage.appIconSVG,
-                          width: 25,
+                          width: 20,
                         ),
                         SizedBox(width: 10),
                         Text(

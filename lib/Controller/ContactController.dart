@@ -2,8 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
-import 'package:sampark/Model/ChatRoomModel.dart';
-import 'package:sampark/Model/UserMode.dart';
+
+import '../Model/ChatRoomModel.dart';
+import '../Model/UserMode.dart';
+
 
 class ContactController extends GetxController {
   final db = FirebaseFirestore.instance;

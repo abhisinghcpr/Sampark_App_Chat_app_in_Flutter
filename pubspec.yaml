@@ -1,4 +1,4 @@
-name: sampark
+name: wechat
 description: "A new Flutter project."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -35,23 +35,31 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-  flutter_svg: ^2.0.9 # For SVG
-  slide_to_act: ^2.0.2 # For Welcome Page slide button
-  get: ^4.6.6 # For State Management And Page routing 
-  firebase_core: ^2.25.4 # For Firebase
-  firebase_auth: ^4.17.4 # For Firebase Authentication
-  cloud_firestore: ^4.15.4 # For Cloud Firestore
-  image_picker: ^1.0.7 # For Image Picker
-  firebase_storage: ^11.6.5 # For Firebase Storage
-  uuid: ^4.3.2 # For Uniq id 
-  intl: ^0.19.0 # For Date and time format
-  cached_network_image: ^3.3.1 # For Cached Network Image
-  fluttertoast: ^8.2.4 # For Toast Message
-  zego_uikit_prebuilt_call: ^4.5.1 # For Video Call
-  zego_uikit_signaling_plugin: ^2.7.6
-  http: ^1.2.0
-  package_info_plus: ^5.0.1
   url_launcher: ^6.2.5
+  flutter_svg: ^2.0.10+1
+  slide_to_act: ^2.0.2
+  get: ^4.6.6
+  firebase_core: ^2.27.0
+  cloud_firestore: ^4.15.8
+  firebase_auth: ^4.17.8
+  image_picker: ^1.1.2
+  uuid: ^4.4.2
+  cached_network_image: ^3.4.0
+  fluttertoast: ^8.2.5
+  zego_uikit_prebuilt_call: ^4.9.0
+  zego_uikit_signaling_plugin: ^2.8.2
+  http: ^1.2.0
+  package_info_plus: ^8.0.2
+  zego_express_engine: ^3.16.2
+  intl: ^0.19.0
+  firebase_storage: ^11.7.7
+  flutter_callkit_incoming_yoer: ^2.0.4+1
+  firebase_app_check: ^0.2.2+7
+  flutter_slidable: ^3.1.1
+  emoji_picker_flutter: ^1.5.0
+  speech_to_text: ^6.6.0
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

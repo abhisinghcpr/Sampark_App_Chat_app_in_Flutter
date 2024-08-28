@@ -1,7 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
-import 'package:sampark/Model/UserMode.dart';
+
+import '../Model/UserMode.dart';
 
 class DbController extends GetxController {
   final db = FirebaseFirestore.instance;

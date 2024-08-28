@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:sampark/Config/Images.dart';
-import 'package:sampark/Controller/AppConntroller.dart';
-import 'package:sampark/Controller/ContactController.dart';
-import 'package:sampark/Controller/ImagePicker.dart';
-import 'package:sampark/Controller/StatusController.dart';
-import 'package:sampark/Pages/CallHistory/CallHistory.dart';
-import 'package:sampark/Pages/Groups/GroupsPage.dart';
-import 'package:sampark/Pages/Home/Widget/ChatsList.dart';
-import 'package:sampark/Pages/Home/Widget/TabBar.dart';
-import 'package:sampark/Pages/ProfilePage/ProfilePage.dart';
-import 'package:sampark/Widget/demo.dart';
 
+import '../../Config/Images.dart';
 import '../../Config/Strings.dart';
+import '../../Controller/AppConntroller.dart';
 import '../../Controller/CallController.dart';
+import '../../Controller/ContactController.dart';
+import '../../Controller/ImagePicker.dart';
 import '../../Controller/ProfileController.dart';
+import '../../Controller/StatusController.dart';
+import '../CallHistory/CallHistory.dart';
+import '../Groups/GroupsPage.dart';
+import '../ProfilePage/ProfilePage.dart';
+import 'Widget/ChatsList.dart';
+import 'Widget/TabBar.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

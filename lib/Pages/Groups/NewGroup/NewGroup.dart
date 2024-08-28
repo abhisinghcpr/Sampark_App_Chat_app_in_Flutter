@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sampark/Controller/ContactController.dart';
-import 'package:sampark/Controller/GroupController.dart';
-import 'package:sampark/Pages/Groups/NewGroup/GroupTitle.dart';
-import 'package:sampark/Pages/Groups/NewGroup/SelectedMemberList.dart';
-import 'package:sampark/Pages/Home/Widget/ChatTile.dart';
+
 import '../../../Config/Images.dart';
+import '../../../Controller/ContactController.dart';
+import '../../../Controller/GroupController.dart';
+import '../../Home/Widget/ChatTile.dart';
+import 'GroupTitle.dart';
+import 'SelectedMemberList.dart';
 
 class NewGroup extends StatelessWidget {
   const NewGroup({super.key});

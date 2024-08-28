@@ -1,16 +1,18 @@
 import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:sampark/Config/Images.dart';
-import 'package:sampark/Controller/ChatController.dart';
-import 'package:sampark/Controller/GroupController.dart';
-import 'package:sampark/Controller/ProfileController.dart';
-import 'package:sampark/Model/GroupModel.dart';
-import 'package:sampark/Pages/Chat/Widgets/ChatBubble.dart';
-import 'package:sampark/Pages/GroupChat/GroupTypeMessage.dart';
-import 'package:sampark/Pages/GroupInfo/GroupInfo.dart';
+
+import '../../Config/Images.dart';
+import '../../Controller/GroupController.dart';
+import '../../Controller/ProfileController.dart';
+import '../../Model/GroupModel.dart';
+import '../Chat/Widgets/ChatBubble.dart';
+import '../GroupInfo/GroupInfo.dart';
+import 'GroupTypeMessage.dart';
+
 
 class GroupChatPage extends StatelessWidget {
   final GroupModel groupModel;
@@ -23,69 +25,82 @@ class GroupChatPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        leading: InkWell(
-          splashColor: Colors.transparent,
-          highlightColor: Colors.transparent,
-          onTap: () {
-            // Get.to(UserProfilePage(
-            //   userModel: userModel,
-            // ));
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+
+             Navigator.of(context).pop();
           },
-          child: Padding(
-            padding: const EdgeInsets.all(5),
-            child: Container(
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(100),
-                child: CachedNetworkImage(
-                  imageUrl: groupModel.profileUrl == ""
-                      ? AssetsImage.defaultProfileUrl
-                      : groupModel.profileUrl!,
-                  fit: BoxFit.cover,
-                  placeholder: (context, url) => CircularProgressIndicator(),
-                  errorWidget: (context, url, error) => Icon(Icons.error),
+        ),
+        title: Row(
+          children: [
+            InkWell(
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              onTap: () {
+                // Get.to(UserProfilePage(
+                //   userModel: userModel,
+                // ));
+              },
+              child: Container(
+                width: 40,
+                height: 40,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: CachedNetworkImage(
+                    imageUrl: groupModel.profileUrl == ""
+                        ? AssetsImage.defaultProfileUrl
+                        : groupModel.profileUrl!,
+                    fit: BoxFit.cover,
+                    placeholder: (context, url) => CupertinoActivityIndicator(),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
+                  ),
                 ),
               ),
             ),
-          ),
-        ),
-        title: InkWell(
-          splashColor: Colors.transparent,
-          highlightColor: Colors.transparent,
-          onTap: () {
-            Get.to(GroupInfo(
-              groupModel: groupModel,
-            ));
-          },
-          child: Row(
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(groupModel.name ?? "Group Name",
-                      style: Theme.of(context).textTheme.bodyLarge),
-                  Text(
-                    "Online",
-                    style: Theme.of(context).textTheme.labelSmall,
-                  ),
-                ],
+            SizedBox(width: 10),
+            Expanded(
+              child: InkWell(
+                splashColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                onTap: () {
+                  Get.to(GroupInfo(
+                    groupModel: groupModel,
+                  ));
+                },
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      groupModel.name ?? "Group Name",
+                      style: Theme.of(context).textTheme.bodyLarge,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    Text(
+                      "Online",
+                      style: Theme.of(context).textTheme.labelSmall,
+                    ),
+                  ],
+                ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: Icon(
-              Icons.phone,
-            ),
-          ),
-          IconButton(
-            onPressed: () {},
-            icon: Icon(
-              Icons.video_call,
-            ),
-          )
-        ],
+        // actions: [
+        //   IconButton(
+        //     onPressed: () {},
+        //     icon: Icon(
+        //       Icons.phone,
+        //     ),
+        //   ),
+        //   IconButton(
+        //     onPressed: () {},
+        //     icon: Icon(
+        //       Icons.video_call,
+        //     ),
+        //   )
+        // ],
       ),
       body: Padding(
         padding: EdgeInsets.only(bottom: 10, top: 10, left: 10, right: 10),

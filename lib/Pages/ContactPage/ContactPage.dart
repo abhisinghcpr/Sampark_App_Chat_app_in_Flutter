@@ -1,16 +1,17 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sampark/Controller/ChatController.dart';
-import 'package:sampark/Controller/ContactController.dart';
-import 'package:sampark/Controller/ProfileController.dart';
-import 'package:sampark/Pages/Chat/ChatPage.dart';
-import 'package:sampark/Pages/ContactPage/Widgets/ConactSearch.dart';
-import 'package:sampark/Pages/ContactPage/Widgets/NewContatcTile.dart';
-import 'package:sampark/Pages/Groups/NewGroup/NewGroup.dart';
+
 
 import '../../Config/Images.dart';
+import '../../Controller/ChatController.dart';
+import '../../Controller/ContactController.dart';
+import '../../Controller/ProfileController.dart';
+import '../Chat/ChatPage.dart';
+import '../Groups/NewGroup/NewGroup.dart';
 import '../Home/Widget/ChatTile.dart';
+import 'Widgets/ConactSearch.dart';
+import 'Widgets/NewContatcTile.dart';
 
 class ContactPage extends StatelessWidget {
   const ContactPage({super.key});

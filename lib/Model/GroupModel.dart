@@ -1,4 +1,6 @@
-import 'package:sampark/Model/UserMode.dart';
+
+
+import 'UserMode.dart';
 
 class GroupModel {
   String? id;

@@ -3,10 +3,12 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:sampark/Controller/AuthController.dart';
-import 'package:sampark/Controller/ImagePicker.dart';
-import 'package:sampark/Controller/ProfileController.dart';
-import 'package:sampark/Widget/PrimaryButton.dart';
+
+import '../../Controller/AuthController.dart';
+import '../../Controller/ImagePicker.dart';
+import '../../Controller/ProfileController.dart';
+import '../../Widget/PrimaryButton.dart';
+
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});

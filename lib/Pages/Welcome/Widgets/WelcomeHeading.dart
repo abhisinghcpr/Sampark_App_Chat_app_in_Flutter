@@ -15,7 +15,9 @@ class WelcomeHeading extends StatelessWidget {
           children: [
             SvgPicture.asset(
               AssetsImage.appIconSVG,
-              color: Theme.of(context).colorScheme.onBackground,
+              width: 60,
+              height: 60,
+              // color: Theme.of(context).colorScheme.onBackground,
             ),
           ],
         ),

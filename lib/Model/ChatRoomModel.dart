@@ -1,5 +1,7 @@
-import 'package:sampark/Model/ChatModel.dart';
-import 'package:sampark/Model/UserMode.dart';
+
+
+import 'ChatModel.dart';
+import 'UserMode.dart';
 
 class ChatRoomModel {
   String? id;

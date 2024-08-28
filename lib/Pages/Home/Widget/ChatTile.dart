@@ -1,7 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sampark/Controller/ChatController.dart';
+
+import '../../../Controller/ChatController.dart';
+
 
 class ChatTile extends StatelessWidget {
   final String imageUrl;
@@ -21,8 +24,8 @@ class ChatTile extends StatelessWidget {
   Widget build(BuildContext context) {
     ChatController chatController = Get.put(ChatController());
     return Container(
-      margin: EdgeInsets.only(bottom: 10),
-      padding: EdgeInsets.all(10),
+      margin: const EdgeInsets.only(bottom: 10),
+      padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         color: Theme.of(context).colorScheme.primaryContainer,
@@ -33,17 +36,17 @@ class ChatTile extends StatelessWidget {
           Expanded(
             child: Row(
               children: [
-                Container(
-                  height: 70,
-                  width: 70,
+                SizedBox(
+                  height: 60,
+                  width: 60,
                   child: ClipRRect(
                       borderRadius: BorderRadius.circular(100),
                       child: CachedNetworkImage(
                         imageUrl: imageUrl,
                         fit: BoxFit.cover,
-                        width: 70,
+                        width: 06,
                         placeholder: (context, url) =>
-                            CircularProgressIndicator(),
+                            const CupertinoActivityIndicator(),
                         errorWidget: (context, url, error) => Icon(Icons.error),
                       )),
                 ),

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:sampark/Config/Images.dart';
-import 'package:sampark/Model/GroupModel.dart';
-import 'package:sampark/Pages/Home/Widget/ChatTile.dart';
 
-import '../UserProfile/Widgets/UserInfo.dart';
+import '../../Config/Images.dart';
+import '../../Model/GroupModel.dart';
+import '../Home/Widget/ChatTile.dart';
 import 'GroupMemberInfo.dart';
 
 class GroupInfo extends StatelessWidget {
@@ -46,9 +44,9 @@ class GroupInfo extends StatelessWidget {
                   .map(
                     (member) => ChatTile(
                       imageUrl:
-                          member.profileImage ?? AssetsImage.defaultProfileUrl,
+                          member!.profileImage ?? AssetsImage.defaultProfileUrl,
                       name: member.name!,
-                      lastChat: member.email!,
+                      lastChat: member!.email!,
                       lastTime: member.role == "admin" ? "Admin" : "User",
                     ),
                   )

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:sampark/Config/Images.dart';
-import 'package:sampark/Controller/AuthController.dart';
-import 'package:sampark/Controller/ProfileController.dart';
-import 'package:sampark/Model/UserMode.dart';
-import 'package:sampark/Pages/UserProfile/Widgets/UserInfo.dart';
+
+import '../../Config/Images.dart';
+import '../../Controller/AuthController.dart';
+import '../../Controller/ProfileController.dart';
+import '../../Model/UserMode.dart';
+import 'Widgets/UserInfo.dart';
 
 class UserProfilePage extends StatelessWidget {
   final UserModel userModel;

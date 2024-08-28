@@ -1,14 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
-import 'package:sampark/Config/CustomMessage.dart';
-import 'package:sampark/Controller/ProfileController.dart';
-import 'package:sampark/Model/GroupModel.dart';
-import 'package:sampark/Model/UserMode.dart';
-import 'package:sampark/Pages/Home/HomePage.dart';
 import 'package:uuid/uuid.dart';
-
+import '../Config/CustomMessage.dart';
 import '../Model/ChatModel.dart';
+import '../Model/GroupModel.dart';
+import '../Model/UserMode.dart';
+import '../Pages/Home/HomePage.dart';
+import 'ProfileController.dart';
 
 class GroupController extends GetxController {
   final db = FirebaseFirestore.instance;
@@ -85,7 +84,7 @@ class GroupController extends GetxController {
     groupList.value = tempGroup
         .where(
           (e) => e.members!.any(
-            (element) => element.id == auth.currentUser!.uid,
+            (element) => element?.id == auth.currentUser!.uid,
           ),
         )
         .toList();
