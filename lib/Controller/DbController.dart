@@ -18,7 +18,7 @@ class DbController extends GetxController {
   Future<void> getUserList() async {
     isLoading.value = true;
     try {
-      await db.collection("users").get().then(
+      await db.collection("chatUsers").get().then(
             (value) => {
               userList.value = value.docs
                   .map(
@@ -34,7 +34,7 @@ class DbController extends GetxController {
   }
 
   Stream<List<UserModel>> get userStream {
-    return db.collection("users").snapshots().map(
+    return db.collection("chatUsers").snapshots().map(
           (event) => event.docs
               .map(
                 (e) => UserModel.fromJson(e.data()),

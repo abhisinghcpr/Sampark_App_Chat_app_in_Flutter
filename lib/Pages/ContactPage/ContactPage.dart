@@ -78,7 +78,7 @@ class ContactPage extends StatelessWidget {
                         child: ChatTile(
                           imageUrl:
                               e.profileImage ?? AssetsImage.defaultProfileUrl,
-                          name: e.name ?? "User",
+                          name: e.name!,
                           lastChat: e.about ?? "Hey there",
                           lastTime: e.email ==
                                   profileController.currentUser.value.email

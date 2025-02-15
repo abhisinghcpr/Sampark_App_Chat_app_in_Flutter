@@ -217,7 +217,6 @@
 import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -274,7 +273,7 @@ class ChatPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      userModel.name ?? "User",
+                      userModel.name!,
                       style: Theme.of(context).textTheme.bodyLarge,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -283,19 +282,28 @@ class ChatPage extends StatelessWidget {
                       builder: (context, snapshot) {
                         if (snapshot.connectionState == ConnectionState.waiting) {
                           return const Text("");
-                        } else {
-                          return Text(
-                            snapshot.data!.status ?? "",
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: snapshot.data!.status == "Online"
-                                  ? Colors.green
-                                  : Colors.grey,
-                            ),
+                        }
+                        if (snapshot.hasError) {
+                          return const Text(
+                            "Error fetching status",
+                            style: TextStyle(color: Colors.red),
                           );
                         }
+                        if (!snapshot.hasData || snapshot.data == null) {
+                          return const Text(
+                            "Offline",
+                            style: TextStyle(fontSize: 12, color: Colors.grey),
+                          );
+                        }
+                        return Text(
+                          snapshot.data!.status!,
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: snapshot.data!.status == "Online" ? Colors.green : Colors.grey,
+                          ),
+                        );
                       },
-                    )
+                    ),
                   ],
                 ),
               ),

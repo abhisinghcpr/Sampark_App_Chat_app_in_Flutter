@@ -10,7 +10,7 @@ class StatusController extends GetxController with WidgetsBindingObserver {
   void onInit() async {
     super.onInit();
     WidgetsBinding.instance.addObserver(this);
-    await db.collection("users").doc(auth.currentUser!.uid).update({
+    await db.collection("chatUsers").doc(auth.currentUser!.uid).update({
       "Status": "Online",
     });
   }
@@ -19,12 +19,12 @@ class StatusController extends GetxController with WidgetsBindingObserver {
   void didChangeAppLifecycleState(AppLifecycleState state) async {
     if (state == AppLifecycleState.inactive) {
       print("❌ Offline");
-      await db.collection("users").doc(auth.currentUser!.uid).update({
+      await db.collection("chatUsers").doc(auth.currentUser!.uid).update({
         "Status": "Offline",
       });
     } else if (state == AppLifecycleState.resumed) {
       print("✅ Online");
-      await db.collection("users").doc(auth.currentUser!.uid).update({
+      await db.collection("chatUsers").doc(auth.currentUser!.uid).update({
         "Status": "Online",
       });
     }

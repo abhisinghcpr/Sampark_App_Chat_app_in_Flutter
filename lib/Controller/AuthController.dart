@@ -66,7 +66,7 @@ class AuthController extends GetxController {
     );
 
     try {
-      await db.collection("users").doc(auth.currentUser!.uid).set(
+      await db.collection("chatUsers").doc(auth.currentUser!.uid).set(
             newUser.toJson(),
           );
     } catch (ex) {

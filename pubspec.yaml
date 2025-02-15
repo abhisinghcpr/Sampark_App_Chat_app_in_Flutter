@@ -9,7 +9,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # followed by an optional build number separated by a +.
 # Both the version and the builder number may be overridden in flutter
 # build by specifying --build-name and --build-number, respectively.
-# In Android, build-name is used as versionName while build-number used as versionCode.
+# In Android, build-name is used as versionName while build-number used as versi onCode.
 # Read more about Android versioning at https://developer.android.com/studio/publish/versioning
 # In iOS, build-name is used as CFBundleShortVersionString while build-number is used as CFBundleVersion.
 # Read more about iOS versioning at
@@ -39,9 +39,9 @@ dependencies:
   flutter_svg: ^2.0.10+1
   slide_to_act: ^2.0.2
   get: ^4.6.6
-  firebase_core: ^2.27.0
-  cloud_firestore: ^4.15.8
-  firebase_auth: ^4.17.8
+  firebase_core: ^3.9.0
+  cloud_firestore: ^5.6.0
+  firebase_auth: ^5.3.4
   image_picker: ^1.1.2
   uuid: ^4.4.2
   cached_network_image: ^3.4.0
@@ -51,13 +51,13 @@ dependencies:
   http: ^1.2.0
   package_info_plus: ^8.0.2
   zego_express_engine: ^3.16.2
-  intl: ^0.19.0
-  firebase_storage: ^11.7.7
+  intl: ^0.20.1
+  firebase_storage: ^12.3.7
   flutter_callkit_incoming_yoer: ^2.0.4+1
-  firebase_app_check: ^0.2.2+7
+  firebase_app_check: ^0.3.1+7
   flutter_slidable: ^3.1.1
-  emoji_picker_flutter: ^1.5.0
-  speech_to_text: ^6.6.0
+  emoji_picker_flutter: ^4.2.0
+  speech_to_text: ^7.0.0
 
 
 dev_dependencies:
@@ -69,7 +69,7 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^2.0.0
+  flutter_lints: ^5.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

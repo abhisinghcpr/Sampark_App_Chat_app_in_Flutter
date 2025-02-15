@@ -63,7 +63,7 @@ class UserUpdateProfile extends StatelessWidget {
                     TextField(
                       textInputAction: TextInputAction.next,
                       decoration: InputDecoration(
-                        hintText: "Nitish Kumar",
+                        hintText: "Kumar",
                         prefixIcon: Icon(
                           Icons.person,
                         ),

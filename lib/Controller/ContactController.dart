@@ -22,7 +22,7 @@ class ContactController extends GetxController {
     isLoading.value = true;
     try {
       userList.clear();
-      await db.collection("users").get().then(
+      await db.collection("chatUsers").get().then(
             (value) => {
               userList.value = value.docs
                   .map(
@@ -53,7 +53,7 @@ class ContactController extends GetxController {
   Future<void> saveContact(UserModel user) async {
     try {
       await db
-          .collection("users")
+          .collection("chatUsers")
           .doc(auth.currentUser!.uid)
           .collection("contacts")
           .doc(user.id)
@@ -67,7 +67,7 @@ class ContactController extends GetxController {
 
   Stream<List<UserModel>> getContacts() {
     return db
-        .collection("users")
+        .collection("chatUsers")
         .doc(auth.currentUser!.uid)
         .collection("contacts")
         .snapshots()

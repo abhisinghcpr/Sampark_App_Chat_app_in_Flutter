@@ -127,7 +127,7 @@ class ChatController extends GetxController {
   }
 
   Stream<UserModel> getStatus(String uid) {
-    return db.collection('users').doc(uid).snapshots().map(
+    return db.collection('chatUsers').doc(uid).snapshots().map(
       (event) {
         return UserModel.fromJson(event.data()!);
       },
@@ -136,7 +136,7 @@ class ChatController extends GetxController {
 
   Stream<List<CallModel>> getCalls() {
     return db
-        .collection("users")
+        .collection("chatUsers")
         .doc(auth.currentUser!.uid)
         .collection("calls")
         .orderBy("timestamp", descending: true)
@@ -188,7 +188,7 @@ class ChatController extends GetxController {
     try {
 
       QuerySnapshot callsSnapshot = await db
-          .collection("users")
+          .collection("chatUsers")
           .doc(auth.currentUser!.uid)
           .collection("calls")
           .where("id", isEqualTo: callId)

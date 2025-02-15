@@ -117,6 +117,8 @@
 //     );
 //   }
 // }
+import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -295,32 +297,24 @@ class _TypeMessageState extends State<TypeMessage> {
               message.value = messageController.text;
             },
             textEditingController: messageController,
-            config: emoji_picker.Config(
-              columns: 7,
-              emojiSizeMax: 32 * (Platform.isIOS ? 1.30 : 1.0),
-              verticalSpacing: 0,
-              horizontalSpacing: 0,
-              gridPadding: EdgeInsets.zero,
-              initCategory: emoji_picker.Category.RECENT,
-              bgColor: Color(0xFFF2F2F2),
-              indicatorColor: Colors.blue,
-              iconColor: Colors.grey,
-              iconColorSelected: Colors.blue,
-              backspaceColor: Colors.blue,
-              skinToneDialogBgColor: Colors.white,
-              skinToneIndicatorColor: Colors.grey,
-              enableSkinTones: true,
-              recentTabBehavior: emoji_picker.RecentTabBehavior.RECENT,
-              recentsLimit: 28,
-              noRecents: const Text(
-                'No Recents',
-                style: TextStyle(fontSize: 20, color: Colors.black26),
-                textAlign: TextAlign.center,
+            config: Config(
+              height: 256,
+              checkPlatformCompatibility: true,
+              emojiViewConfig: EmojiViewConfig(
+                emojiSizeMax: 28 *
+                    (defaultTargetPlatform == TargetPlatform.iOS
+                        ? 1.20
+                        : 1.0),
               ),
-              loadingIndicator: const SizedBox.shrink(),
-              tabIndicatorAnimDuration: kTabScrollDuration,
-              categoryIcons: const emoji_picker.CategoryIcons(),
-              buttonMode: emoji_picker.ButtonMode.MATERIAL,
+              viewOrderConfig: const ViewOrderConfig(
+                top: EmojiPickerItem.categoryBar,
+                middle: EmojiPickerItem.emojiView,
+                bottom: EmojiPickerItem.searchBar,
+              ),
+              skinToneConfig: const SkinToneConfig(),
+              categoryViewConfig: const CategoryViewConfig(),
+              bottomActionBarConfig: const BottomActionBarConfig(),
+              searchViewConfig: const SearchViewConfig(),
             ),
           ),
         )

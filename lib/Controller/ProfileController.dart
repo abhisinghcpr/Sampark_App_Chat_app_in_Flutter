@@ -20,7 +20,7 @@ class ProfileController extends GetxController {
   }
 
   Future<void> getUserDetails() async {
-    await db.collection("users").doc(auth.currentUser!.uid).get().then(
+    await db.collection("chatUsers").doc(auth.currentUser!.uid).get().then(
           (value) => {
             currentUser.value = UserModel.fromJson(
               value.data()!,
@@ -47,7 +47,7 @@ class ProfileController extends GetxController {
             imageUrl == "" ? currentUser.value.profileImage : imageLink,
         phoneNumber: number,
       );
-      await db.collection("users").doc(auth.currentUser!.uid).set(
+      await db.collection("chatUsers").doc(auth.currentUser!.uid).set(
             updatedUser.toJson(),
           );
       await getUserDetails();

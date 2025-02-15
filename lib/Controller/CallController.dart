@@ -523,7 +523,7 @@ class CallController extends GetxController {
     );
 
     try {
-      await db.collection("users").doc(auth.currentUser!.uid).collection("calls").doc(id).set(newCall.toJson());
+      await db.collection("chatUsers").doc(auth.currentUser!.uid).collection("calls").doc(id).set(newCall.toJson());
 
       newCall.status = "incoming";
       await db.collection("notification").doc(receiver.id).collection("call").doc(id).set(newCall.toJson());
@@ -548,7 +548,7 @@ class CallController extends GetxController {
   Future<void> endCall(CallModel call) async {
     try {
       await db.collection("notification").doc(call.receiverUid).collection("call").doc(call.id).delete();
-      await db.collection("users").doc(call.callerUid).collection("calls").doc(call.id).delete();
+      await db.collection("chatUsers").doc(call.callerUid).collection("calls").doc(call.id).delete();
     } catch (e) {
       handleNetworkError(e);
     }
@@ -556,8 +556,8 @@ class CallController extends GetxController {
 
   Future<void> receiveCall(CallModel call) async {
     try {
-      await db.collection("users").doc(call.receiverUid).collection("calls").doc(call.id).update({'status': 'in_call'});
-      await db.collection("users").doc(call.callerUid).collection("calls").doc(call.id).update({'status': 'in_call'});
+      await db.collection("chatUsers").doc(call.receiverUid).collection("calls").doc(call.id).update({'status': 'in_call'});
+      await db.collection("chatUsers").doc(call.callerUid).collection("calls").doc(call.id).update({'status': 'in_call'});
     } catch (e) {
       handleNetworkError(e);
     }

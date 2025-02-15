@@ -1,229 +1,300 @@
-import 'dart:io';
-import 'package:cached_network_image/cached_network_image.dart';
+// import 'dart:io';
+// import 'package:cached_network_image/cached_network_image.dart';
+// import 'package:flutter/material.dart';
+// import 'package:get/get.dart';
+// import 'package:image_picker/image_picker.dart';
+//
+// import '../../Controller/AuthController.dart';
+// import '../../Controller/ImagePicker.dart';
+// import '../../Controller/ProfileController.dart';
+// import '../../Widget/PrimaryButton.dart';
+//
+//
+// class ProfilePage extends StatelessWidget {
+//   const ProfilePage({super.key});
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     RxBool isEdit = false.obs;
+//     ProfileController profileController = Get.put(ProfileController());
+//     TextEditingController name =
+//         TextEditingController(text: profileController.currentUser.value.name);
+//     TextEditingController email =
+//         TextEditingController(text: profileController.currentUser.value.email);
+//     TextEditingController phone = TextEditingController(
+//         text: profileController.currentUser.value.phoneNumber);
+//     TextEditingController about =
+//         TextEditingController(text: profileController.currentUser.value.about);
+//     ImagePickerController imagePickerController =
+//         Get.put(ImagePickerController());
+//     RxString imagePath = "".obs;
+//
+//     AuthController authController = Get.put(AuthController());
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text("Profile"),
+//         actions: [
+//           IconButton(
+//             onPressed: () {
+//               authController.logoutUser();
+//             },
+//             icon: Icon(Icons.logout),
+//           ),
+//         ],
+//       ),
+//       body: Padding(
+//         padding: const EdgeInsets.all(10),
+//         child: ListView(
+//           children: [
+//             Container(
+//               padding: EdgeInsets.all(10),
+//               // height: 300,
+//               decoration: BoxDecoration(
+//                 color: Theme.of(context).colorScheme.primaryContainer,
+//                 borderRadius: BorderRadius.circular(20),
+//               ),
+//               child: Row(
+//                 children: [
+//                   Expanded(
+//                     child: Column(
+//                       children: [
+//                         SizedBox(height: 20),
+//                         Row(
+//                           mainAxisAlignment: MainAxisAlignment.center,
+//                           children: [
+//                             Obx(
+//                               () => isEdit.value
+//                                   ? InkWell(
+//                                       splashColor: Colors.transparent,
+//                                       highlightColor: Colors.transparent,
+//                                       onTap: () async {
+//                                         imagePath.value =
+//                                             await imagePickerController
+//                                                 .pickImage(ImageSource.gallery);
+//                                         print("Image Picked" + imagePath.value);
+//                                       },
+//                                       child: Container(
+//                                         height: 200,
+//                                         width: 200,
+//                                         decoration: BoxDecoration(
+//                                           color: Theme.of(context)
+//                                               .colorScheme
+//                                               .background,
+//                                           borderRadius:
+//                                               BorderRadius.circular(100),
+//                                         ),
+//                                         child: imagePath.value == ""
+//                                             ? Icon(
+//                                                 Icons.add,
+//                                               )
+//                                             : ClipRRect(
+//                                                 borderRadius:
+//                                                     BorderRadius.circular(100),
+//                                                 child: Image.file(
+//                                                   File(imagePath.value),
+//                                                   fit: BoxFit.cover,
+//                                                 ),
+//                                               ),
+//                                       ),
+//                                     )
+//                                   : Container(
+//                                       height: 200,
+//                                       width: 200,
+//                                       decoration: BoxDecoration(
+//                                         color: Theme.of(context)
+//                                             .colorScheme
+//                                             .background,
+//                                         borderRadius:
+//                                             BorderRadius.circular(100),
+//                                       ),
+//                                       child: profileController.currentUser.value
+//                                                       .profileImage ==
+//                                                   null ||
+//                                               profileController.currentUser
+//                                                       .value.profileImage ==
+//                                                   ""
+//                                           ? Icon(
+//                                               Icons.image,
+//                                             )
+//                                           : ClipRRect(
+//                                               borderRadius:
+//                                                   BorderRadius.circular(100),
+//                                               child: CachedNetworkImage(
+//                                                 imageUrl: profileController
+//                                                     .currentUser
+//                                                     .value
+//                                                     .profileImage!,
+//                                                 fit: BoxFit.cover,
+//                                                 placeholder: (context, url) =>
+//                                                     CircularProgressIndicator(),
+//                                                 errorWidget:
+//                                                     (context, url, error) =>
+//                                                         Icon(Icons.error),
+//                                               )),
+//                                     ),
+//                             )
+//                           ],
+//                         ),
+//                         SizedBox(height: 20),
+//                         Obx(
+//                           () => TextField(
+//                             controller: name,
+//                             enabled: isEdit.value,
+//                             decoration: InputDecoration(
+//                               filled: isEdit.value,
+//                               labelText: "Name",
+//                               prefixIcon: Icon(
+//                                 Icons.person,
+//                               ),
+//                             ),
+//                           ),
+//                         ),
+//                         SizedBox(height: 10),
+//                         Obx(
+//                           () => TextField(
+//                             controller: about,
+//                             enabled: isEdit.value,
+//                             decoration: InputDecoration(
+//                               filled: isEdit.value,
+//                               labelText: "About",
+//                               prefixIcon: Icon(
+//                                 Icons.info,
+//                               ),
+//                             ),
+//                           ),
+//                         ),
+//                         TextField(
+//                           controller: email,
+//                           enabled: false,
+//                           decoration: InputDecoration(
+//                             filled: isEdit.value,
+//                             labelText: "Email",
+//                             prefixIcon: Icon(
+//                               Icons.alternate_email,
+//                             ),
+//                           ),
+//                         ),
+//                         Obx(
+//                           () => TextField(
+//                             controller: phone,
+//                             enabled: isEdit.value,
+//                             decoration: InputDecoration(
+//                               filled: isEdit.value,
+//                               labelText: "Number",
+//                               prefixIcon: Icon(
+//                                 Icons.phone,
+//                               ),
+//                             ),
+//                           ),
+//                         ),
+//                         SizedBox(height: 20),
+//                         Row(
+//                           mainAxisAlignment: MainAxisAlignment.center,
+//                           children: [
+//                             Obx(
+//                               () => isEdit.value
+//                                   ? PrimaryButton(
+//                                       btnName: "Save",
+//                                       icon: Icons.save,
+//                                       ontap: () async {
+//                                         await profileController.updateProfile(
+//                                           imagePath.value,
+//                                           name.text,
+//                                           about.text,
+//                                           phone.text,
+//                                         );
+//                                         isEdit.value = false;
+//                                       },
+//                                     )
+//                                   : PrimaryButton(
+//                                       btnName: "Edit",
+//                                       icon: Icons.edit,
+//                                       ontap: () {
+//                                         isEdit.value = true;
+//                                       },
+//                                     ),
+//                             )
+//                           ],
+//                         ),
+//                         SizedBox(height: 20),
+//                       ],
+//                     ),
+//                   )
+//                 ],
+//               ),
+//             )
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
+
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
-
-import '../../Controller/AuthController.dart';
-import '../../Controller/ImagePicker.dart';
+import 'package:wechat/Pages/ProfilePage/upadte.dart';
 import '../../Controller/ProfileController.dart';
-import '../../Widget/PrimaryButton.dart';
-
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
+  final ProfileController profileController = Get.put(ProfileController());
+
+  ProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    RxBool isEdit = false.obs;
-    ProfileController profileController = Get.put(ProfileController());
-    TextEditingController name =
-        TextEditingController(text: profileController.currentUser.value.name);
-    TextEditingController email =
-        TextEditingController(text: profileController.currentUser.value.email);
-    TextEditingController phone = TextEditingController(
-        text: profileController.currentUser.value.phoneNumber);
-    TextEditingController about =
-        TextEditingController(text: profileController.currentUser.value.about);
-    ImagePickerController imagePickerController =
-        Get.put(ImagePickerController());
-    RxString imagePath = "".obs;
-
-    AuthController authController = Get.put(AuthController());
     return Scaffold(
       appBar: AppBar(
-        title: Text("Profile"),
-        actions: [
-          IconButton(
-            onPressed: () {
-              authController.logoutUser();
-            },
-            icon: Icon(Icons.logout),
-          ),
-        ],
+        title: const Text("Profile"),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(10),
-        child: ListView(
-          children: [
-            Container(
-              padding: EdgeInsets.all(10),
-              // height: 300,
-              decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.primaryContainer,
-                borderRadius: BorderRadius.circular(20),
+      body: Obx(
+            () => profileController.currentUser.value.id == null
+            ? const Center(child: CircularProgressIndicator())
+            : Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            children: [
+              // Profile Image
+              CircleAvatar(
+                radius: 50,
+                backgroundImage: profileController
+                    .currentUser.value.profileImage !=
+                    null
+                    ? NetworkImage(
+                    profileController.currentUser.value.profileImage!)
+                    : const AssetImage("assets/placeholder.png")
+                as ImageProvider,
               ),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Column(
-                      children: [
-                        SizedBox(height: 20),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Obx(
-                              () => isEdit.value
-                                  ? InkWell(
-                                      splashColor: Colors.transparent,
-                                      highlightColor: Colors.transparent,
-                                      onTap: () async {
-                                        imagePath.value =
-                                            await imagePickerController
-                                                .pickImage(ImageSource.gallery);
-                                        print("Image Picked" + imagePath.value);
-                                      },
-                                      child: Container(
-                                        height: 200,
-                                        width: 200,
-                                        decoration: BoxDecoration(
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .background,
-                                          borderRadius:
-                                              BorderRadius.circular(100),
-                                        ),
-                                        child: imagePath.value == ""
-                                            ? Icon(
-                                                Icons.add,
-                                              )
-                                            : ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(100),
-                                                child: Image.file(
-                                                  File(imagePath.value),
-                                                  fit: BoxFit.cover,
-                                                ),
-                                              ),
-                                      ),
-                                    )
-                                  : Container(
-                                      height: 200,
-                                      width: 200,
-                                      decoration: BoxDecoration(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .background,
-                                        borderRadius:
-                                            BorderRadius.circular(100),
-                                      ),
-                                      child: profileController.currentUser.value
-                                                      .profileImage ==
-                                                  null ||
-                                              profileController.currentUser
-                                                      .value.profileImage ==
-                                                  ""
-                                          ? Icon(
-                                              Icons.image,
-                                            )
-                                          : ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(100),
-                                              child: CachedNetworkImage(
-                                                imageUrl: profileController
-                                                    .currentUser
-                                                    .value
-                                                    .profileImage!,
-                                                fit: BoxFit.cover,
-                                                placeholder: (context, url) =>
-                                                    CircularProgressIndicator(),
-                                                errorWidget:
-                                                    (context, url, error) =>
-                                                        Icon(Icons.error),
-                                              )),
-                                    ),
-                            )
-                          ],
-                        ),
-                        SizedBox(height: 20),
-                        Obx(
-                          () => TextField(
-                            controller: name,
-                            enabled: isEdit.value,
-                            decoration: InputDecoration(
-                              filled: isEdit.value,
-                              labelText: "Name",
-                              prefixIcon: Icon(
-                                Icons.person,
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 10),
-                        Obx(
-                          () => TextField(
-                            controller: about,
-                            enabled: isEdit.value,
-                            decoration: InputDecoration(
-                              filled: isEdit.value,
-                              labelText: "About",
-                              prefixIcon: Icon(
-                                Icons.info,
-                              ),
-                            ),
-                          ),
-                        ),
-                        TextField(
-                          controller: email,
-                          enabled: false,
-                          decoration: InputDecoration(
-                            filled: isEdit.value,
-                            labelText: "Email",
-                            prefixIcon: Icon(
-                              Icons.alternate_email,
-                            ),
-                          ),
-                        ),
-                        Obx(
-                          () => TextField(
-                            controller: phone,
-                            enabled: isEdit.value,
-                            decoration: InputDecoration(
-                              filled: isEdit.value,
-                              labelText: "Number",
-                              prefixIcon: Icon(
-                                Icons.phone,
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 20),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Obx(
-                              () => isEdit.value
-                                  ? PrimaryButton(
-                                      btnName: "Save",
-                                      icon: Icons.save,
-                                      ontap: () async {
-                                        await profileController.updateProfile(
-                                          imagePath.value,
-                                          name.text,
-                                          about.text,
-                                          phone.text,
-                                        );
-                                        isEdit.value = false;
-                                      },
-                                    )
-                                  : PrimaryButton(
-                                      btnName: "Edit",
-                                      icon: Icons.edit,
-                                      ontap: () {
-                                        isEdit.value = true;
-                                      },
-                                    ),
-                            )
-                          ],
-                        ),
-                        SizedBox(height: 20),
-                      ],
-                    ),
-                  )
-                ],
+              const SizedBox(height: 20),
+              // Name
+              Text(
+                profileController.currentUser.value.name ?? "Name",
+                style: Theme.of(context).textTheme.headlineMedium,
               ),
-            )
-          ],
+              const SizedBox(height: 10),
+              // Email
+              Text(
+                profileController.currentUser.value.email ?? "Email",
+                style: Theme.of(context).textTheme.headlineMedium,
+              ),
+              const SizedBox(height: 10),
+              // About
+              Text(
+                profileController.currentUser.value.about ?? "About",
+                style: Theme.of(context).textTheme.headlineMedium,
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 30),
+              // Edit Button
+              ElevatedButton.icon(
+                onPressed: () {
+                  Get.to(() => EditProfilePage());
+                },
+                icon: const Icon(Icons.edit),
+                label: const Text("Edit Profile"),
+              ),
+            ],
+          ),
         ),
       ),
     );

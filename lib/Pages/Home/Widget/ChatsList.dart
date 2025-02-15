@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import '../../../Config/Images.dart';
 import '../../../Controller/ChatController.dart';
 import '../../../Controller/ContactController.dart';
@@ -8,6 +7,8 @@ import '../../../Controller/ProfileController.dart';
 import '../../../Model/ChatRoomModel.dart';
 import '../../Chat/ChatPage.dart';
 import 'ChatTile.dart';
+
+
 
 class ChatList extends StatelessWidget {
   const ChatList({super.key});
@@ -17,7 +18,7 @@ class ChatList extends StatelessWidget {
     ContactController contactController = Get.put(ContactController());
     ProfileController profileController = Get.put(ProfileController());
     ChatController chatController = Get.put(ChatController());
-    return StreamBuilder<List<ChatRoomModel>>(
+    return  StreamBuilder<List<ChatRoomModel>>(
       stream: contactController.getChatRoom(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
@@ -28,9 +29,14 @@ class ChatList extends StatelessWidget {
         }
         List<ChatRoomModel>? e = snapshot.data;
 
+        if (e == null || e.isEmpty) {
+          return Center(child: Text('No chats available.'));
+        }
+
         return ListView.builder(
-          itemCount: e!.length,
+          itemCount: e.length,
           itemBuilder: (context, index) {
+            print("Chat Room Data: ${e[index]}"); // Debugging Log
             return InkWell(
               splashColor: Colors.transparent,
               highlightColor: Colors.transparent,
@@ -39,7 +45,7 @@ class ChatList extends StatelessWidget {
                 Get.to(
                   ChatPage(
                     userModel: (e[index].receiver!.id ==
-                            profileController.currentUser.value.id
+                        profileController.currentUser.value.id
                         ? e[index].sender
                         : e[index].receiver)!,
                   ),
@@ -47,12 +53,12 @@ class ChatList extends StatelessWidget {
               },
               child: ChatTile(
                 imageUrl: (e[index].receiver!.id ==
-                            profileController.currentUser.value.id
-                        ? e[index].sender!.profileImage
-                        : e[index].receiver!.profileImage) ??
+                    profileController.currentUser.value.id
+                    ? e[index].sender!.profileImage
+                    : e[index].receiver!.profileImage) ??
                     AssetsImage.defaultProfileUrl,
                 name: (e[index].receiver!.id ==
-                        profileController.currentUser.value.id
+                    profileController.currentUser.value.id
                     ? e[index].sender!.name
                     : e[index].receiver!.name)!,
                 lastChat: e[index].lastMessage ?? "Last Message",
@@ -63,5 +69,6 @@ class ChatList extends StatelessWidget {
         );
       },
     );
+
   }
 }
