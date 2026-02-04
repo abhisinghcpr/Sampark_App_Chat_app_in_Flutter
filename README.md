@@ -1,38 +1,69 @@
+# 📱 SAMPARK – Secure Messaging App (Flutter)
 
-# SAMPARK - SECURE MESSAGING APP 📃
+**SAMPARK** is a secure and modern **real-time messaging application**
+developed using **Flutter, Dart, and GetX**, with **Firebase** as the backend.
+The app focuses on **secure communication**, **role-based authentication**,
+and **real-time chat & calling features**.
 
-Developed Sampark, a secure messaging application using Flutter, Dart, and GetX with a Firebase backend. This app ensures secure communication through various features, including role-based authentication, encrypted messaging, group chat capabilities, and video/audio calls.
+---
 
-[**LINKEDIN**](https://www.linkedin.com/in/mrnitishkr/) | [**LIVE LINK**](https://mrnitishroy.github.io/Sampark/) | [**YOUTUBE**](https://www.youtube.com/watch?v=ezhBkc_gHDs&list=PLe9ZTrJrS7SmYGBICVGMUMoIVz2Jf9zeq&pp=iAQB) |  [**GITHUB**](https://github.com/MrNitishroy) | 
-[**UI DESIGN**](https://www.figma.com/design/C9SJW6Fxn2INXkwK4IfId5/SMPARK?node-id=83-79&t=6lNkQGaNfEhq82xa-1)
-## Key Features Implemented:
+## 👨‍💻 Developer
+**Abhishek Singh – Flutter Developer** 🇮🇳  
 
-- 🔐 **Role-Based Authentication:**
-    - Utilizes Firebase for secure and reliable authentication.
-    - Users can sign in using their mobile numbers, ensuring easy and secure access.
-- 💬 **One-to-One Chat:**
-    - Enables private messaging between users with simple end-to-end encryption to ensure privacy and security.
-- 👥 **Group Chat Functionality:**
-    - Allows users to create and manage groups, including adding and removing members.
-    - Facilitates seamless communication within groups.
-- 📹 **One-to-One Video/Audio Calls:**
-    - Integrated with ZegoCloud to provide high-quality video and audio calling features.
-    - Ensures real-time, direct communication between users.
+🌐 **Portfolio Website:**  
+👉 https://abhisinghcpr.github.io  
 
-## Technologies Used:
-- **Frontend:** Developed using Flutter and Dart, enhanced by the GetX state management library for efficient and responsive UI/UX.
-- **Backend:** Powered by Firebase, providing a robust and scalable backend solution.
-## Screenshots
+💻 **GitHub Profile:**  
+👉 https://github.com/abhisinghcpr  
 
-![App Screenshot](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhMbED5cD-WLqsbpMJjfxbJK-5EEPrbtBzmrKkadjGOFpZSNE4l8qOC3pUpKUvLQVUdEKc_n1q-wqCFM1Sa88uunpopAoxYpSdHwAzuzHs1TdlKj0Z9h0OXJg9ABqJrQ8FJrADf_3wr4RGlx3As8pr0fkjxSAlpTek1tyadXgwkfk8CUg7eKeVBbD62AtUF/s3889/chat.png)
+---
 
-![App Screenshot](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhy4_J4EXs4MpDP5tBeUJbiU-KUh6fctdE5e0gSVU1ZeCxbqGIPCBPIiXeFGGv7hHbIpwpUgIxaxAP9zrZ3qVF6Nvgnr0Mevi1ga1n8EgloRunzmgxO-jeNfvNfe66PEVyz8Kf6Z_mxsiHtsApUtQMNzIVVn2GZE7w_VXhpgJMckaaVZH8efXGxG0g0N8Jt/s3889/chat1.png)
+## 📌 Overview
+SAMPARK is designed to provide **secure and reliable communication**
+between users. It supports **one-to-one chats**, **group chats**,
+and **video/audio calls**, making it suitable for professional
+and personal communication use cases.
 
-![App Screenshot](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg0dSxl_IKyQSZC-LlO-S0ptGhsFQxKovxvn7ChkxcQfaXLmiia6hQmLjmWtHIc4WS66S-uO8pm_JGLB5DTMgIOqYE2yUExDO4ZP10cvuA6vX3UmY5TJ7Fsq-ed4mvcfyObi8MZqkMYRI-8wOiesW64XcW8rLrf5XvKkhFkmN587iaWV44EKy84RUkHWdVe/s1947/chatdark.png)
+---
 
+## 🔑 Key Features
 
+### 🔐 Role-Based Authentication
+- Firebase Authentication for secure login
+- Mobile number-based authentication
+- Role-based access control for different user types
 
+### 💬 One-to-One Chat
+- Real-time private messaging
+- Secure message handling
+- Smooth UI with instant updates using GetX
 
-## Follow
-[**LINKEDIN**](https://www.linkedin.com/in/mrnitishkr/) | [**LIVE LINK**](https://mrnitishroy.github.io/Sampark/) | [**YOUTUBE**](https://www.youtube.com/watch?v=ezhBkc_gHDs&list=PLe9ZTrJrS7SmYGBICVGMUMoIVz2Jf9zeq&pp=iAQB) |  [**GITHUB**](https://github.com/MrNitishroy) | 
-[**UI DESIGN**](https://www.figma.com/design/C9SJW6Fxn2INXkwK4IfId5/SMPARK?node-id=83-79&t=6lNkQGaNfEhq82xa-1)
+### 👥 Group Chat
+- Create and manage groups
+- Add or remove group members
+- Real-time group messaging
+
+### 📹 Audio & Video Calls
+- One-to-one **video & audio calling**
+- Integrated with **ZegoCloud**
+- High-quality, real-time communication
+
+---
+
+## 🛠 Tech Stack
+
+### Frontend
+- **Flutter (Dart)**
+- **GetX** – State Management & Navigation
+
+### Backend
+- **Firebase Authentication**
+- **Firebase Firestore**
+- **Firebase Cloud Storage**
+
+### Calling SDK
+- **ZegoCloud** – Audio & Video Calls
+
+---
+
+## 📂 Project Structure
